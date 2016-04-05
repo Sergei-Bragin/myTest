@@ -7,10 +7,10 @@ import java.util.Date;
  */
 public class Employee {
 
-    private int id;
+    private Integer id;
     private String name;
     private String email;
-    private double salary;
+    private Double salary;
     private Date date;
 
     public Employee(int id, String name, String email, double salary, Date date) {
@@ -21,11 +21,11 @@ public class Employee {
         this.date = date;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -45,11 +45,11 @@ public class Employee {
         this.email = email;
     }
 
-    public double getSalary() {
+    public Double getSalary() {
         return salary;
     }
 
-    public void setSalary(double salary) {
+    public void setSalary(Double salary) {
         this.salary = salary;
     }
 

@@ -7,8 +7,6 @@ import java.io.IOException;
 
 public interface InternalController {
 
-    void showAll(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
-
-    void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+    void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
 }

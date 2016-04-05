@@ -15,7 +15,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     private DepartmentDAO departmentDAO = new DepartmentDAOImpl();
 
     @Override
-    public Department getById(int id) {
+    public Department getById(Integer id) {
         return departmentDAO.getById(id);
     }
 
@@ -35,7 +35,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public void delDep(int id) {
+    public void delDep(Integer id) {
         departmentDAO.delDep(id);
     }
 

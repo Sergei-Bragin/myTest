@@ -9,10 +9,10 @@ import java.util.List;
  */
 public interface DepartmentDAO {
 
-    Department getById(int id);
+    Department getById(Integer id);
     List<Department> getAll();
     void addDep(Department department);
     void updateDep(Department department);
-    void delDep(int id);
+    void delDep(Integer id);
 
 }

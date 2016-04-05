@@ -18,7 +18,6 @@ public class MainController extends HttpServlet {
         if(controller==null){
             controller = controllerFactory.getDefaultController();
         }
-        controller.showAll(req,resp);
-        controller.delete(req,resp);
+        controller.execute(req,resp);
     }
 }

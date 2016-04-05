@@ -15,10 +15,14 @@
         <tr>
             <td><c:out value="${dep.id}" /></td>
             <td><c:out value="${dep.name}" /></td>
-            <td><a href="/delUpdate?id=${dep.id}">Update</a></td>
+            <td><a href="/addDep?id=${dep.id}">Update</a></td>
             <td><a href="/delDep?id=${dep.id}">Delete</a></td>
         </tr>
     </c:forEach>
 </table>
+<%--<form action="/add" >--%>
+    <%--<input type="submit" value="Add Department">--%>
+<%--</form>--%>
+<a href="/addDep">Add new one</a>
 </body>
 </html>

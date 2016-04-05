@@ -8,14 +8,15 @@ import java.util.Map;
  */
 public class ControllerFactory {
 
-    private Map<String, InternalController> controllerMap = new HashMap<String, InternalController>();
+    private Map<String, InternalController> controllerMap = new HashMap<>();
 
-    private InternalController defaultController = new ShowAllDepartmentsController();
+    private InternalController defaultController = new DepartmentsShowAllController();
 
     {
         controllerMap.put("/", defaultController);
-        controllerMap.put("/delDep", new DelDepartmentsController());
-        //controllerMap.put("/showDep");
+        controllerMap.put("/delDep", new DepartmentsDelController());
+        controllerMap.put("/addDep", new DepartmentCreateAddPageController());
+        controllerMap.put("/saveDep", new DepartmentAddController());
     }
 
     public InternalController getControllerByName(String name){
