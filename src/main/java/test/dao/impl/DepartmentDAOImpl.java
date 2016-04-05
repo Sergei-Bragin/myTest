@@ -13,8 +13,6 @@ import java.util.List;
  */
 public class DepartmentDAOImpl implements DepartmentDAO {
 
-    //private Connection connection = MYSQLConnection.getConnection();
-
     public Department getById(Integer id) {
         Department dep = new Department();
         try(Connection connection = MYSQLConnection.getConnection()) {

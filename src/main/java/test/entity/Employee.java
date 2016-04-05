@@ -12,13 +12,19 @@ public class Employee {
     private String email;
     private Double salary;
     private Date date;
+    private Integer depId;
 
-    public Employee(int id, String name, String email, double salary, Date date) {
+    public Employee() {
+
+    }
+
+    public Employee(Integer id, String name, String email, Double salary, Date date, Integer depId) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.salary = salary;
         this.date = date;
+        this.depId = depId;
     }
 
     public Integer getId() {
@@ -59,5 +65,13 @@ public class Employee {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public Integer getDepId() {
+        return depId;
+    }
+
+    public void setDepId(Integer depId) {
+        this.depId = depId;
     }
 }

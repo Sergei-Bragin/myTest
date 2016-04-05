@@ -32,9 +32,6 @@
         </tr>
     </c:forEach>
 </table>
-<%--<form action="/add" >--%>
-    <%--<input type="submit" value="Add Department">--%>
-<%--</form>--%>
 <a href="/addDep">Add new one</a>
 </body>
 </html>
