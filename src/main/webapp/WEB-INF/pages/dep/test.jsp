@@ -15,8 +15,20 @@
         <tr>
             <td><c:out value="${dep.id}" /></td>
             <td><c:out value="${dep.name}" /></td>
-            <td><a href="/addDep?id=${dep.id}">Update</a></td>
-            <td><a href="/delDep?id=${dep.id}">Delete</a></td>
+            <%--<td><a methods="POST" href="/addDep?id=${dep.id}">Update</a></td>
+            <td><a href="/delDep?id=${dep.id}">Delete</a></td>--%>
+            <td>
+                <form method="post" action="/delDep">
+                    <input type="hidden" name="id" value=${dep.id}>
+                    <input type="submit" value="Delete">
+                </form>
+            </td>
+            <td>
+                <form method="post" action="/addDep">
+                    <input type="hidden" name="id" value=${dep.id}>
+                    <input type="submit" value="Update">
+                </form>
+            </td>
         </tr>
     </c:forEach>
 </table>
