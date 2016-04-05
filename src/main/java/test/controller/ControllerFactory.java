@@ -15,6 +15,7 @@ public class ControllerFactory {
 
     {
         controllerMap.put("/", defaultController);
+        controllerMap.put("/", defaultController);
         //controllerMap.put("/showDep");
     }
 

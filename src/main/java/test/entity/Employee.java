@@ -13,6 +13,14 @@ public class Employee {
     private double salary;
     private Date date;
 
+    public Employee(int id, String name, String email, double salary, Date date) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.salary = salary;
+        this.date = date;
+    }
+
     public int getId() {
         return id;
     }

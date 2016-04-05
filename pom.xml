@@ -15,6 +15,12 @@
       <version>5.1.6</version>
     </dependency>
 
+    <dependency>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>tomcat-servlet-api</artifactId>
+      <version>7.0.21</version>
+      <scope>provided</scope>
+    </dependency>
 
     <dependency>
       <groupId>javax.servlet</groupId>
@@ -55,5 +61,15 @@
 
   <build>
     <finalName>myTest</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+        </configuration>
+      </plugin>
+    </plugins>
   </build>
 </project>
