@@ -15,8 +15,8 @@
         <tr>
             <td><c:out value="${dep.id}" /></td>
             <td><c:out value="${dep.name}" /></td>
-            <td><a href="UserController?action=edit&userId=<c:out value="${dep.id}"/>">Update</a></td>
-            <td><a href="UserController?action=delete&userId=<c:out value="${dep.id}"/>">Delete</a></td>
+            <td><a href="/delUpdate?id=${dep.id}">Update</a></td>
+            <td><a href="/delDep?id=${dep.id}">Delete</a></td>
         </tr>
     </c:forEach>
 </table>

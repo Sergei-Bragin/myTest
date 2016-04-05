@@ -9,5 +9,6 @@ public interface InternalController {
 
     void showAll(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
+    void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
 }

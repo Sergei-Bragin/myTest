@@ -12,10 +12,9 @@ public class ControllerFactory {
 
     private InternalController defaultController = new ShowAllDepartmentsController();
 
-
     {
         controllerMap.put("/", defaultController);
-        controllerMap.put("/", defaultController);
+        controllerMap.put("/delDep", new DelDepartmentsController());
         //controllerMap.put("/showDep");
     }
 
