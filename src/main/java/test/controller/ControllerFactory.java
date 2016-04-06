@@ -17,6 +17,12 @@ public class ControllerFactory {
         controllerMap.put("/delDep", new DepartmentsDelController());
         controllerMap.put("/addDep", new DepartmentCreateAddPageController());
         controllerMap.put("/saveDep", new DepartmentAddController());
+        controllerMap.put("/showDepEmpl", new DepartmentShowEmplList());
+        controllerMap.put("/addEmpl", new EmployeeCreateAddPageController());
+        controllerMap.put("/saveEmpl", new EmployeeAddController());
+        //controllerMap.put("/delEmpl", new EmployeeDelController());
+
+
     }
 
     public InternalController getControllerByName(String name){

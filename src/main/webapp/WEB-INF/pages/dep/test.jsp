@@ -29,6 +29,12 @@
                     <input type="submit" value="Update">
                 </form>
             </td>
+            <td>
+                <form method="post" action="/showDepEmpl">
+                    <input type="hidden" name="id" value="${dep.id}">
+                    <input type="submit" value="List empl">
+                </form>
+            </td>
         </tr>
     </c:forEach>
 </table>

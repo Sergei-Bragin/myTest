@@ -14,5 +14,5 @@ public interface EmployeeDAO {
      void addEmpl(Employee employee);
      void updateEmpl(Employee employee);
      void delEmpl(Integer id);
-
+     List<Employee> getEmplByDepId(Integer id);
 }

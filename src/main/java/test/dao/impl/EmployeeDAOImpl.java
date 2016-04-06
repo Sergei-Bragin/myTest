@@ -62,7 +62,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     public void addEmpl(Employee employee) {
         try(Connection connection = MYSQLConnection.getConnection()) {
             try (PreparedStatement preparedStatement =
-                         connection.prepareStatement("insert into empl (name, email, date, salary, department_id) values(?,?,?,?,?)")){
+                         connection.prepareStatement("insert into empl (name, email, date, salary, id_dep) values(?,?,?,?,?)")){
                 preparedStatement.setString(1, employee.getName());
                 preparedStatement.setString(2, employee.getEmail());
                 preparedStatement.setDate(3,  new java.sql.Date(employee.getDate().getTime()));
@@ -80,12 +80,13 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     public void updateEmpl(Employee employee) {
         try(Connection connection = MYSQLConnection.getConnection()) {
             try (PreparedStatement preparedStatement = connection
-                    .prepareStatement("update empl set name = ?, email = ?, date = ?, salary = ?,  where employees_id = ?")) {
+                    .prepareStatement("update empl set name = ?, email = ?, date = ?, salary = ?  where id = ?")) {
                 preparedStatement.setString(1, employee.getName());
                 preparedStatement.setString(2, employee.getEmail());
                 preparedStatement.setDate(3, new java.sql.Date(employee.getDate().getTime()));
                 preparedStatement.setDouble(4, employee.getSalary());
-                preparedStatement.executeQuery();
+                preparedStatement.setInt(5, employee.getId());
+                preparedStatement.executeUpdate();
             }
         }catch (SQLException e) {
             e.printStackTrace();
@@ -106,12 +107,13 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         }
     }
 
+    @Override
     public List<Employee> getEmplByDepId(Integer id) {
 
         List<Employee> employees = new ArrayList<Employee>();
 
         try(Connection connection = MYSQLConnection.getConnection()) {
-            try (PreparedStatement preparedStatement = connection.prepareStatement("select * from empl where department_id = ?")) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement("select * from empl where id_dep = ?")) {
 
                 preparedStatement.setInt(1, id);
                 ResultSet resultSet = preparedStatement.executeQuery();
