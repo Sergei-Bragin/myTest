@@ -19,15 +19,15 @@ public class EmployeeCreateAddPageController implements InternalController {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String id = request.getParameter("id");
+        String id = request.getParameter("idEmp");
         if(id!=null){
             Integer depId = Integer.valueOf(id);
             Employee employee = employeeService.getById(Integer.valueOf(depId));
-            request.setAttribute("id_dep", depId);
             if(employee!=null){
                 request.setAttribute("empl",employee);
             }
         }
+        request.setAttribute("id_dep", request.getParameter("id"));
         request.getRequestDispatcher("WEB-INF/pages/empl/add.jsp").forward(request, response);
 
     }
