@@ -13,7 +13,7 @@
 </head>
 <body>
 <form method="POST" action='saveEmpl' >
-    <input type="hidden" name="id" value="<c:out value="${employee.id}"/>"/>
+    <input type="hidden" name="idEmp" value="<c:out value="${employee.id}"/>"/>
     Name : <input type="text" name="name" value="<c:out value="${employee.name}"/>"/><br/>
     Email : <input type="text" name="email" value="<c:out value="${employee.email}"/>"/><br/>
     Date : <input type="date" name="date" value="<c:out value="${employee.date}"/>"/><br/>

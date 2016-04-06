@@ -80,12 +80,13 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     public void updateEmpl(Employee employee) {
         try(Connection connection = MYSQLConnection.getConnection()) {
             try (PreparedStatement preparedStatement = connection
-                    .prepareStatement("update empl set name = ?, email = ?, date = ?, salary = ?  where id = ?")) {
+                    .prepareStatement("update empl set name = ?, email = ?, date = ?, salary = ?, id_dep = ?  where id = ?")) {
                 preparedStatement.setString(1, employee.getName());
                 preparedStatement.setString(2, employee.getEmail());
                 preparedStatement.setDate(3, new java.sql.Date(employee.getDate().getTime()));
                 preparedStatement.setDouble(4, employee.getSalary());
-                preparedStatement.setInt(5, employee.getId());
+                preparedStatement.setDouble(5, employee.getDepId());
+                preparedStatement.setInt(6, employee.getId());
                 preparedStatement.executeUpdate();
             }
         }catch (SQLException e) {

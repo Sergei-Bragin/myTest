@@ -21,14 +21,16 @@
             <td><c:out value="${empl.date}" /></td>
             <td><c:out value="${empl.salary}" /></td>
             <td>
-                <form method="post" action="/del">
+                <form method="post" action="/delEmpl">
                     <input type="hidden" name="id" value=${empl.id}>
+                    <input type="hidden" name="depId" value="${id_dep}">
                     <input type="submit" value="Delete">
                 </form>
             </td>
             <td>
-                <form method="post" action="/addDep">
-                    <input type="hidden" name="id" value=${empl.id}>
+                <form method="get" action="/addEmpl">
+                    <input type="hidden" name="idEmp" value=${empl.id}>
+                    <input type="hidden" name="id" value="${id_dep}">
                     <input type="submit" value="Update">
                 </form>
             </td>

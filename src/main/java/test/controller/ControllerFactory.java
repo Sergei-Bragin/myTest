@@ -20,7 +20,7 @@ public class ControllerFactory {
         controllerMap.put("/showDepEmpl", new DepartmentShowEmplList());
         controllerMap.put("/addEmpl", new EmployeeCreateAddPageController());
         controllerMap.put("/saveEmpl", new EmployeeAddController());
-        //controllerMap.put("/delEmpl", new EmployeeDelController());
+        controllerMap.put("/delEmpl", new EmployeeDelController());
 
 
     }

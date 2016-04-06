@@ -18,8 +18,10 @@ public class DepartmentAddController implements InternalController {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         Department department = new Department();
         department.setName(request.getParameter("name"));
+
         String depId = request.getParameter("id");
         if(depId.isEmpty()){
             departmentService.addDep(department);

@@ -25,17 +25,20 @@ public class EmployeeAddController implements InternalController {
         employee.setEmail(request.getParameter("email"));
         employee.setSalary(Double.valueOf(request.getParameter("salary")));
         employee.setDate(Date.valueOf(request.getParameter("date")));
-        String s = request.getParameter("idDep");
-        employee.setDepId(Integer.valueOf(request.getParameter("idDep")));
 
-        String idEmpl = request.getParameter("id");
+
+        Integer depId = Integer.valueOf(request.getParameter("idDep"));
+        employee.setDepId(depId);
+        String idEmpl = request.getParameter("idEmp");
+
         if (idEmpl.isEmpty()){
             employeeService.addEmpl(employee);
         }else{
             employee.setId(Integer.valueOf(idEmpl));
             employeeService.updateEmpl(employee);
         }
-        response.sendRedirect("/");
+        String url = "/showDepEmpl?id=" + depId;
+        response.sendRedirect(url);
 
     }
 }

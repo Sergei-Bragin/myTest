@@ -30,7 +30,7 @@
                 </form>
             </td>
             <td>
-                <form method="post" action="/showDepEmpl">
+                <form method="get" action="/showDepEmpl">
                     <input type="hidden" name="id" value="${dep.id}">
                     <input type="submit" value="List empl">
                 </form>
