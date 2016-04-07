@@ -12,12 +12,12 @@
     <title>Add Empl</title>
 </head>
 <body>
-<form method="POST" action='saveEmpl' >
-    <input type="hidden" name="idEmp" value="<c:out value="${employee.id}"/>"/>
-    Name : <input type="text" name="name" value="<c:out value="${employee.name}"/>"/><br/>
-    Email : <input type="text" name="email" value="<c:out value="${employee.email}"/>"/><br/>
-    Date : <input type="date" name="date" value="<c:out value="${employee.date}"/>"/><br/>
-    Salary : <input type="text" name="salary" value="<c:out value="${employee.salary}"/>"/><br/>
+<form method="POST" action='saveEmpl'>
+    <input type="hidden" name="idEmp" value="${empl.id}"/>
+    Name : <input type="text" name="name" value="${empl.name}"/><br/>
+    Email : <input type="text" name="email" value="${empl.email}"/><br/>
+    Date : <input type="date" name="date" value="${empl.date}"/><br/>
+    Salary : <input type="text" name="salary" value="${empl.salary}"/><br/>
     <input type="hidden" name="idDep" value="${id_dep}"/><br/>
     <input type="submit" value="Submit" />
 </form>
