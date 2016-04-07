@@ -6,7 +6,7 @@
     <link href="<c:url value="css/main.css"/>" rel="stylesheet">
 </head>
 <body>
-<table border=1>
+<table>
     <tr>
         <th>Id</th>
         <th>Name</th>
