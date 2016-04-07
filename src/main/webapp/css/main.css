@@ -4,6 +4,9 @@
     margin: auto;
     border: none;
 }
+span.error{
+    color:red;
+}
 table{
     border-collapse: collapse;
 }

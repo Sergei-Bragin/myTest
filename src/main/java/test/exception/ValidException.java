@@ -1,9 +1,6 @@
 package test.exception;
 
-import net.sf.oval.ConstraintViolation;
-
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -11,14 +8,13 @@ import java.util.Map;
  */
 public class ValidException extends Exception {
 
-    private Map<String , String> map = new HashMap<>();
+    private Map<String , String> mapError = new HashMap<>();
 
-    public ValidException(Map<String,String> map){
-        this.map=map;
+    public ValidException(Map<String,String> mapError){
+        this.mapError = mapError;
     }
 
-    public Map<String, String> getMap() {
-        return map;
+    public Map<String, String> getMapError() {
+        return mapError;
     }
-
 }

@@ -9,7 +9,8 @@
 <div class="center">
 <form method="POST" action='saveDep' >
     <input type="hidden" name="id" value="<c:out value="${department.id}"/>"/>
-    Name : <input type="text" name="name" value="<c:out value="${department.name}"/>"/><br/>
+    Name : <input type="text" name="name" value="<c:out value="${department.name}"/>"/>
+    <c:forEach  items="${error}" var="error"><span class="error"/>${error.value}</span></c:forEach><br/>
     <input class="button15" type="submit" value="Submit" />
 </form>
 </div>

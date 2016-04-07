@@ -31,9 +31,9 @@ public class ValidatorOVAL {
                 if (context instanceof FieldContext) {
                     Field fieldContext = ((FieldContext) context).getField();
                     map.put(fieldContext.getName(), constraintViolation.getMessage());
-                    throw new ValidException(map);
                 }
             }
+            throw new ValidException(map);
         }
     }
 

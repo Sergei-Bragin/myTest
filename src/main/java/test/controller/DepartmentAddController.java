@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Map;
 
 /**
  * Created by on 05.04.16.
@@ -36,8 +37,13 @@ public class DepartmentAddController implements InternalController {
                 departmentService.updateDep(department);
             }
             response.sendRedirect("/");
-        }catch (SQLException  | ValidException exception){
-            exception.printStackTrace();
+        }catch (SQLException e){
+
+        }
+        catch (ValidException exception){
+            Map<String,String> map =  exception.getMapError();
+            request.setAttribute("error", map);
+            request.getRequestDispatcher("WEB-INF/pages/dep/add.jsp").forward(request,response);
         }
 
     }
