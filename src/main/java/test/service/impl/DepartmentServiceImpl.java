@@ -1,10 +1,15 @@
 package test.service.impl;
 
 import test.dao.DepartmentDAO;
+import test.dao.EmployeeDAO;
 import test.dao.impl.DepartmentDAOImpl;
+import test.dao.impl.EmployeeDAOImpl;
 import test.entity.Department;
+import test.entity.Employee;
 import test.service.DepartmentService;
+import test.service.EmployeeService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,6 +18,7 @@ import java.util.List;
 public class DepartmentServiceImpl implements DepartmentService {
 
     private DepartmentDAO departmentDAO = new DepartmentDAOImpl();
+    private EmployeeDAO employeeDAO = new EmployeeDAOImpl();
 
     @Override
     public Department getById(Integer id) {
@@ -36,7 +42,15 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public void delDep(Integer id) {
-        departmentDAO.delDep(id);
+        List<Employee> employees = employeeDAO.getEmplByDepId(id);
+        if(!employees.isEmpty()){
+            for(Employee emp : employees){
+                employeeDAO.delEmpl(emp.getId());
+            }
+            departmentDAO.delDep(id);
+        }else {
+            departmentDAO.delDep(id);
+        }
     }
 
 }

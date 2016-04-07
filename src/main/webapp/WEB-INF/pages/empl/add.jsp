@@ -20,7 +20,7 @@
     Date : <input type="date" name="date" value="${empl.date}"/><br/>
     Salary : <input type="text" name="salary" value="${empl.salary}"/><br/>
     <input type="hidden" name="idDep" value="${id_dep}"/><br/>
-    <input type="submit" value="Submit" />
+    <input class="button15" type="submit" value="Submit" />
 </form>
 </body>
 </html>

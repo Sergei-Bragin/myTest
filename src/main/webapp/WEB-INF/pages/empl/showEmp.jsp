@@ -6,6 +6,7 @@
     <link href="<c:url value="css/main.css"/>" rel="stylesheet">
 </head>
 <body>
+<div class="center">
 <table>
     <tr>
         <th>Id</th>
@@ -39,5 +40,6 @@
     </c:forEach>
 </table>
 <a href="/addEmpl?id=${id_dep}">Add new one</a>
+</div>
 </body>
 </html>
