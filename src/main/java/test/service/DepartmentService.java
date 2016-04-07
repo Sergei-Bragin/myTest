@@ -2,6 +2,7 @@ package test.service;
 
 import test.entity.Department;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -9,10 +10,10 @@ import java.util.List;
  */
 public interface DepartmentService {
 
-    Department getById(Integer id);
-    List<Department> getAll();
-    void addDep(Department department);
-    void updateDep(Department department);
-    void delDep(Integer id);
+    Department getById(Integer id)throws SQLException;
+    List<Department> getAll()throws SQLException;
+    void addDep(Department department)throws SQLException;
+    void updateDep(Department department)throws SQLException;
+    void delDep(Integer id) throws SQLException;
 
 }

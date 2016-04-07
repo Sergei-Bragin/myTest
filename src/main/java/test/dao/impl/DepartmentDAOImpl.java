@@ -13,10 +13,11 @@ import java.util.List;
  */
 public class DepartmentDAOImpl implements DepartmentDAO {
 
-    public Department getById(Integer id) {
+    public Department getById(Integer id) throws SQLException {
+
         Department dep = new Department();
         try(Connection connection = MYSQLConnection.getConnection()) {
-            try(PreparedStatement preparedStatement = connection.prepareStatement("select * from dep where id=?")) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement("select * from dep where id=?")) {
                 preparedStatement.setInt(1, id);
                 ResultSet rs = preparedStatement.executeQuery();
                 if (rs.next()) {
@@ -24,13 +25,12 @@ public class DepartmentDAOImpl implements DepartmentDAO {
                     dep.setName(rs.getString("name"));
                 }
             }
-        }catch (SQLException e){
-            e.printStackTrace();
         }
         return dep;
     }
 
-    public List<Department> getAll() {
+    public List<Department> getAll() throws SQLException {
+
         List<Department> departments = new ArrayList<>();
         try(Connection connection = MYSQLConnection.getConnection()) {
             try (Statement statement = connection.createStatement()) {
@@ -42,13 +42,12 @@ public class DepartmentDAOImpl implements DepartmentDAO {
                     departments.add(dep);
                 }
             }
-        }catch (SQLException e) {
-            e.printStackTrace();
         }
         return departments;
     }
 
-    public void addDep(Department department) {
+    public void addDep(Department department) throws SQLException {
+
         try(Connection connection = MYSQLConnection.getConnection()) {
             try (PreparedStatement preparedStatement =
                          connection.prepareStatement("insert into dep(name) values (?)")) {
@@ -56,12 +55,11 @@ public class DepartmentDAOImpl implements DepartmentDAO {
                 preparedStatement.executeUpdate();
             }
         }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
+
     }
 
-    public void updateDep(Department department) {
+    public void updateDep(Department department) throws SQLException {
+
         try(Connection connection = MYSQLConnection.getConnection()) {
             try (PreparedStatement preparedStatement = connection
                     .prepareStatement("update dep set name=? where id=?")) {
@@ -69,12 +67,11 @@ public class DepartmentDAOImpl implements DepartmentDAO {
                 preparedStatement.setInt(2, department.getId());
                 preparedStatement.executeUpdate();
             }
-        }catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 
-    public void delDep(Integer id) {
+    public void delDep(Integer id) throws SQLException {
+
         try(Connection connection = MYSQLConnection.getConnection()) {
             try (PreparedStatement preparedStatement = connection
                     .prepareStatement("delete from dep where id=?")) {
@@ -82,8 +79,6 @@ public class DepartmentDAOImpl implements DepartmentDAO {
                 preparedStatement.executeUpdate();
             }
         }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
+
     }
 }

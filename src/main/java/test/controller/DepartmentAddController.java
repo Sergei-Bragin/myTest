@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * Created by on 05.04.16.
@@ -21,14 +22,17 @@ public class DepartmentAddController implements InternalController {
 
         Department department = new Department();
         department.setName(request.getParameter("name"));
-
         String depId = request.getParameter("id");
-        if(depId.isEmpty()){
-            departmentService.addDep(department);
+        try {
+            if(depId.isEmpty()){
+                departmentService.addDep(department);
 
-        }else {
-            department.setId(Integer.valueOf(depId));
-            departmentService.updateDep(department);
+            }else {
+                department.setId(Integer.valueOf(depId));
+                departmentService.updateDep(department);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
         }
         response.sendRedirect("/");
     }

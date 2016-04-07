@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -20,16 +21,22 @@ public class DepartmentShowEmplList implements InternalController {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String id = request.getParameter("id");
-        if(id!=null){
-            Integer depId = Integer.valueOf(id);
-            List<Employee> employees = employeeService.getEmplByDepId(Integer.valueOf(depId));
-            if(employees!=null){
-                request.setAttribute("id_dep",depId);
-                request.setAttribute("empls",employees);
+
+        try {
+            String id = request.getParameter("id");
+            if(id!=null){
+                Integer depId = Integer.valueOf(id);
+                List<Employee> employees = employeeService.getEmplByDepId(Integer.valueOf(depId));
+                if(employees!=null){
+                    request.setAttribute("id_dep",depId);
+                    request.setAttribute("empls",employees);
+                }
             }
+            request.getRequestDispatcher("WEB-INF/pages/empl/showEmp.jsp").forward(request, response);
+        }catch (SQLException e){
+            e.printStackTrace();
         }
-        request.getRequestDispatcher("WEB-INF/pages/empl/showEmp.jsp").forward(request, response);
+
     }
 
 }

@@ -13,6 +13,7 @@
     <link href="<c:url value="css/main.css"/>" rel="stylesheet">
 </head>
 <body>
+<div class="center">
 <form method="POST" action='saveEmpl'>
     <input type="hidden" name="idEmp" value="${empl.id}"/>
     Name : <input type="text" name="name" value="${empl.name}"/><br/>
@@ -22,5 +23,6 @@
     <input type="hidden" name="idDep" value="${id_dep}"/><br/>
     <input class="button15" type="submit" value="Submit" />
 </form>
+</div>
 </body>
 </html>
