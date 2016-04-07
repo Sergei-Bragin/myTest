@@ -4,12 +4,14 @@
 <html>
 <head>
     <title>Department list</title>
+    <link href="<c:url value="css/main.css"/>" rel="stylesheet">
 </head>
 <body>
-<table border=1>
+<div class="center">
+<table>
     <tr>
-        <th>Dep Id</th>
-        <th>Department Name</th>
+        <th>Id</th>
+        <th>Name</th>
     </tr>
     <c:forEach items="${deps}" var="dep">
         <tr>
@@ -18,24 +20,25 @@
             <td>
                 <form method="post" action="/delDep">
                     <input type="hidden" name="id" value=${dep.id}>
-                    <input type="submit" value="Delete">
+                    <input class="button15" type="submit" value="Delete">
                 </form>
             </td>
             <td>
                 <form method="post" action="/addDep">
                     <input type="hidden" name="id" value=${dep.id}>
-                    <input type="submit" value="Update">
+                    <input class="button15" type="submit" value="Update">
                 </form>
             </td>
             <td>
                 <form method="get" action="/showDepEmpl">
                     <input type="hidden" name="id" value="${dep.id}">
-                    <input type="submit" value="List empl">
+                    <input class="button15" type="submit" value="List empl">
                 </form>
             </td>
         </tr>
     </c:forEach>
 </table>
 <a href="/addDep">Add new one</a>
+</div>
 </body>
 </html>

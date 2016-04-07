@@ -10,6 +10,7 @@
 <html>
 <head>
     <title>Add Empl</title>
+    <link href="<c:url value="css/main.css"/>" rel="stylesheet">
 </head>
 <body>
 <form method="POST" action='saveEmpl'>
