@@ -7,7 +7,9 @@ import java.util.Date;
  */
 public class Employee {
 
+
     private Integer id;
+
     private String name;
     private String email;
     private Double salary;

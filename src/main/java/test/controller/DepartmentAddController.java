@@ -1,8 +1,10 @@
 package test.controller;
 
 import test.entity.Department;
+import test.exception.ValidException;
 import test.service.DepartmentService;
 import test.service.impl.DepartmentServiceImpl;
+import test.util.ValidatorOVAL;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -16,14 +18,16 @@ import java.sql.SQLException;
 public class DepartmentAddController implements InternalController {
 
     private DepartmentService departmentService = new DepartmentServiceImpl();
+    private ValidatorOVAL oval = new ValidatorOVAL();
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        try {
         Department department = new Department();
         department.setName(request.getParameter("name"));
         String depId = request.getParameter("id");
-        try {
+
+            oval.valid(department);
             if(depId.isEmpty()){
                 departmentService.addDep(department);
 
@@ -31,9 +35,10 @@ public class DepartmentAddController implements InternalController {
                 department.setId(Integer.valueOf(depId));
                 departmentService.updateDep(department);
             }
-        }catch (SQLException e){
-            e.printStackTrace();
+            response.sendRedirect("/");
+        }catch (SQLException  | ValidException exception){
+            exception.printStackTrace();
         }
-        response.sendRedirect("/");
+
     }
 }

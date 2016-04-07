@@ -1,11 +1,17 @@
 package test.entity;
 
+import net.sf.oval.constraint.NotEmpty;
+import net.sf.oval.constraint.NotNull;
+
 /**
  * Created by on 04.04.16.
  */
 public class Department {
 
     private Integer id;
+
+    @NotNull
+    @NotEmpty(message = "Name can't be empty!")
     private String name;
 
     public Department() {
