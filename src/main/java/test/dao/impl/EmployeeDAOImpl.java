@@ -14,7 +14,8 @@ import java.util.List;
 public class EmployeeDAOImpl implements EmployeeDAO {
 
     @Override
-    public Employee getById(Integer id) {
+    public Employee getById(Integer id) throws SQLException {
+
         Employee employee = new Employee();
         try(Connection connection = MYSQLConnection.getConnection()) {
             try(PreparedStatement preparedStatement = connection.prepareStatement("select * from empl where id=?")) {
@@ -29,14 +30,13 @@ public class EmployeeDAOImpl implements EmployeeDAO {
                     employee.setDepId(rs.getInt("id_dep"));
                 }
             }
-        }catch (SQLException e){
-            e.printStackTrace();
         }
         return employee;
     }
 
     @Override
-    public List<Employee> getAll() {
+    public List<Employee> getAll() throws SQLException {
+
         List<Employee> employees = new ArrayList<>();
         try(Connection connection = MYSQLConnection.getConnection()) {
             try (Statement statement = connection.createStatement()) {
@@ -52,14 +52,13 @@ public class EmployeeDAOImpl implements EmployeeDAO {
                     employees.add(employee);
                 }
             }
-        }catch (SQLException e) {
-            e.printStackTrace();
         }
         return employees;
     }
 
     @Override
-    public void addEmpl(Employee employee) {
+    public void addEmpl(Employee employee) throws SQLException {
+
         try(Connection connection = MYSQLConnection.getConnection()) {
             try (PreparedStatement preparedStatement =
                          connection.prepareStatement("insert into empl (name, email, date, salary, id_dep) values(?,?,?,?,?)")){
@@ -71,13 +70,11 @@ public class EmployeeDAOImpl implements EmployeeDAO {
                 preparedStatement.executeUpdate();
             }
         }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
+
     }
 
     @Override
-    public void updateEmpl(Employee employee) {
+    public void updateEmpl(Employee employee) throws SQLException {
         try(Connection connection = MYSQLConnection.getConnection()) {
             try (PreparedStatement preparedStatement = connection
                     .prepareStatement("update empl set name = ?, email = ?, date = ?, salary = ?, id_dep = ?  where id = ?")) {
@@ -89,13 +86,11 @@ public class EmployeeDAOImpl implements EmployeeDAO {
                 preparedStatement.setInt(6, employee.getId());
                 preparedStatement.executeUpdate();
             }
-        }catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 
     @Override
-    public void delEmpl(Integer id) {
+    public void delEmpl(Integer id) throws SQLException {
         try(Connection connection = MYSQLConnection.getConnection()) {
             try (PreparedStatement preparedStatement = connection
                     .prepareStatement("delete from empl where id=?")) {
@@ -103,13 +98,11 @@ public class EmployeeDAOImpl implements EmployeeDAO {
                 preparedStatement.executeUpdate();
             }
         }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
+
     }
 
     @Override
-    public List<Employee> getEmplByDepId(Integer id) {
+    public List<Employee> getEmplByDepId(Integer id) throws SQLException {
 
         List<Employee> employees = new ArrayList<Employee>();
 
@@ -132,8 +125,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
                     }
                 }
             }
-        }catch (SQLException e) {
-            e.printStackTrace();
         }
         return employees;
     }

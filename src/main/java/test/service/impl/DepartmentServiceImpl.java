@@ -1,10 +1,16 @@
 package test.service.impl;
 
 import test.dao.DepartmentDAO;
+import test.dao.EmployeeDAO;
 import test.dao.impl.DepartmentDAOImpl;
+import test.dao.impl.EmployeeDAOImpl;
 import test.entity.Department;
+import test.entity.Employee;
 import test.service.DepartmentService;
+import test.service.EmployeeService;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,30 +19,39 @@ import java.util.List;
 public class DepartmentServiceImpl implements DepartmentService {
 
     private DepartmentDAO departmentDAO = new DepartmentDAOImpl();
+    private EmployeeDAO employeeDAO = new EmployeeDAOImpl();
 
     @Override
-    public Department getById(Integer id) {
+    public Department getById(Integer id) throws SQLException {
         return departmentDAO.getById(id);
     }
 
     @Override
-    public List<Department> getAll() {
+    public List<Department> getAll() throws SQLException {
         return departmentDAO.getAll();
     }
 
     @Override
-    public void addDep(Department department) {
+    public void addDep(Department department) throws SQLException {
         departmentDAO.addDep(department);
     }
 
     @Override
-    public void updateDep(Department department) {
+    public void updateDep(Department department) throws SQLException {
         departmentDAO.updateDep(department);
     }
 
     @Override
-    public void delDep(Integer id) {
-        departmentDAO.delDep(id);
+    public void delDep(Integer id) throws SQLException {
+        List<Employee> employees = employeeDAO.getEmplByDepId(id);
+        if(!employees.isEmpty()){
+            for(Employee emp : employees){
+                employeeDAO.delEmpl(emp.getId());
+            }
+            departmentDAO.delDep(id);
+        }else {
+            departmentDAO.delDep(id);
+        }
     }
 
 }

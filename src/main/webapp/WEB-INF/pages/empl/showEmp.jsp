@@ -3,15 +3,17 @@
 <html>
 <head>
     <title>Empl List</title>
+    <link href="<c:url value="css/main.css"/>" rel="stylesheet">
 </head>
 <body>
-<table border=1>
+<div class="center">
+<table>
     <tr>
-        <th>Emp Id</th>
-        <th>Emp Name</th>
-        <th>Emp Email</th>
-        <th>Emp Date</th>
-        <th>Emp Salary</th>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Date</th>
+        <th>Salary</th>
     </tr>
     <c:forEach items="${empls}" var="empl">
         <tr>
@@ -24,19 +26,20 @@
                 <form method="post" action="/delEmpl">
                     <input type="hidden" name="id" value=${empl.id}>
                     <input type="hidden" name="depId" value="${id_dep}">
-                    <input type="submit" value="Delete">
+                    <input class="button15" type="submit" value="Delete">
                 </form>
             </td>
             <td>
                 <form method="get" action="/addEmpl">
                     <input type="hidden" name="idEmp" value=${empl.id}>
                     <input type="hidden" name="id" value="${id_dep}">
-                    <input type="submit" value="Update">
+                    <input class="button15" type="submit" value="Update">
                 </form>
             </td>
         </tr>
     </c:forEach>
 </table>
 <a href="/addEmpl?id=${id_dep}">Add new one</a>
+</div>
 </body>
 </html>

@@ -10,16 +10,19 @@
 <html>
 <head>
     <title>Add Empl</title>
+    <link href="<c:url value="css/main.css"/>" rel="stylesheet">
 </head>
 <body>
-<form method="POST" action='saveEmpl' >
-    <input type="hidden" name="idEmp" value="${empl.id}" />
+<div class="center">
+<form method="POST" action='saveEmpl'>
+    <input type="hidden" name="idEmp" value="${empl.id}"/>
     Name : <input type="text" name="name" value="${empl.name}"/><br/>
-    Email : <input type="text" name="email" value="${empl.email}"><br/>
-    Date : <input type="date" name="date" value="${empl.date}"><br/>
-    Salary : <input type="text" name="salary" value="${empl.salary}"><br/>
+    Email : <input type="text" name="email" value="${empl.email}"/><br/>
+    Date : <input type="date" name="date" value="${empl.date}"/><br/>
+    Salary : <input type="text" name="salary" value="${empl.salary}"/><br/>
     <input type="hidden" name="idDep" value="${id_dep}"/><br/>
-    <input type="submit" value="Submit" />
+    <input class="button15" type="submit" value="Submit" />
 </form>
+</div>
 </body>
 </html>
