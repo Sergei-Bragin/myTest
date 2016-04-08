@@ -6,8 +6,10 @@ import test.dao.impl.DepartmentDAOImpl;
 import test.dao.impl.EmployeeDAOImpl;
 import test.entity.Department;
 import test.entity.Employee;
+import test.exception.ValidException;
 import test.service.DepartmentService;
 import test.service.EmployeeService;
+import test.util.validation.ValidatorOVAL;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -20,6 +22,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     private DepartmentDAO departmentDAO = new DepartmentDAOImpl();
     private EmployeeDAO employeeDAO = new EmployeeDAOImpl();
+    private ValidatorOVAL validatorOVAL = new ValidatorOVAL();
 
     @Override
     public Department getByName(String name) throws SQLException {
@@ -37,12 +40,15 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public void addDep(Department department) throws SQLException {
-        departmentDAO.addDep(department);
+    public void addDep(Department department) throws SQLException, ValidException {
+            validatorOVAL.valid(department);
+            departmentDAO.addDep(department);
+
     }
 
     @Override
-    public void updateDep(Department department) throws SQLException {
+    public void updateDep(Department department) throws SQLException, ValidException {
+        validatorOVAL.valid(department);
         departmentDAO.updateDep(department);
     }
 

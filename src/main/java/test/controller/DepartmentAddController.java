@@ -19,7 +19,7 @@ import java.util.Map;
 public class DepartmentAddController implements InternalController {
 
     private DepartmentService departmentService = new DepartmentServiceImpl();
-    private ValidatorOVAL oval = new ValidatorOVAL();
+
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -28,11 +28,9 @@ public class DepartmentAddController implements InternalController {
         department.setName(request.getParameter("name"));
         String depId = request.getParameter("id");
             if(depId.isEmpty()){
-                oval.valid(department);
                 departmentService.addDep(department);
             }else {
                 department.setId(Integer.valueOf(depId));
-                oval.valid(department);
                 departmentService.updateDep(department);
             }
             response.sendRedirect("/");

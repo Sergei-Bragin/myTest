@@ -21,7 +21,6 @@ import java.util.Map;
 public class EmployeeAddController implements InternalController {
 
     private EmployeeService employeeService = new EmployeeServiceImpl();
-    private ValidatorOVAL oval = new ValidatorOVAL();
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -38,11 +37,9 @@ public class EmployeeAddController implements InternalController {
         try {
 
             if (idEmpl.isEmpty()){
-                oval.valid(employee);
                 employeeService.addEmpl(employee);
             }else{
                 employee.setId(ParseType.parseStringToInteger(idEmpl));
-                oval.valid(employee);
                 employeeService.updateEmpl(employee);
             }
             String url = "/showDepEmpl?id=" + depId;
