@@ -4,6 +4,7 @@ import test.entity.Employee;
 import test.exception.ValidException;
 import test.service.EmployeeService;
 import test.service.impl.EmployeeServiceImpl;
+import test.util.ParseType;
 import test.util.validation.ValidatorOVAL;
 
 import javax.servlet.ServletException;
@@ -28,18 +29,20 @@ public class EmployeeAddController implements InternalController {
         Employee employee = new Employee();
         employee.setName(request.getParameter("name"));
         employee.setEmail(request.getParameter("email"));
-        employee.setSalary(Double.valueOf(request.getParameter("salary")));
-        employee.setDate(Date.valueOf(request.getParameter("date")));
-        Integer depId = Integer.valueOf(request.getParameter("idDep"));
+        employee.setSalary(ParseType.parseStringToDouble(request.getParameter("salary")));
+        employee.setDate(ParseType.parseStringToDate(request.getParameter("date")));
+        Integer depId = ParseType.parseStringToInteger(request.getParameter("idDep"));
         employee.setDepId(depId);
         String idEmpl = request.getParameter("idEmp");
 
         try {
-            oval.valid(employee);
+
             if (idEmpl.isEmpty()){
+                oval.valid(employee);
                 employeeService.addEmpl(employee);
             }else{
-                employee.setId(Integer.valueOf(idEmpl));
+                employee.setId(ParseType.parseStringToInteger(idEmpl));
+                oval.valid(employee);
                 employeeService.updateEmpl(employee);
             }
             String url = "/showDepEmpl?id=" + depId;

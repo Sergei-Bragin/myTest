@@ -18,15 +18,19 @@ public class UniqueEmplEmailCheck extends AbstractAnnotationCheck<UniqueEmplEmai
     private EmployeeService employeeService = new EmployeeServiceImpl();
 
     @Override
-    public boolean isSatisfied(Object validatedObject, Object valueToValidate, OValContext context, Validator validator) throws OValException {
-        Employee empl = null;
+    public boolean isSatisfied(Object validatedObject, Object value, OValContext context, Validator validator) throws OValException {
         try {
-            empl = employeeService.getByEmail(valueToValidate.toString());
+            Employee validate = (Employee) validatedObject;
+            Employee dep = employeeService.getByEmail(value.toString());
+            String s = dep.getName();
+            if(!value.equals(s)){
+                return true;
+            } else if(dep.getId()==validate.getId()){
+                return true;
+            }
+
         }catch (SQLException e){
-            empl.setName(valueToValidate.toString());
-        }
-        if(empl.getId() == null){
-            return true;
+            e.printStackTrace();
         }
         return false;
     }

@@ -23,11 +23,12 @@ public class Employee {
     @Email(message = "Email incorrect")
     private String email;
 
-
+    @NotNull(message = "Cant be empty")
     @NotEmpty( message = "Salary can't be empty!")
     @NotNegative (message = "Salary can't be empty")
     private Double salary;
 
+    @NotNull(message = "Cant be Empty")
     @NotEmpty(message = "Date can't be empty")
     private Date date;
 
