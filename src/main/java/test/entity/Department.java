@@ -1,8 +1,10 @@
 package test.entity;
 
+import net.sf.oval.constraint.CheckWith;
 import net.sf.oval.constraint.NotEmpty;
 import net.sf.oval.constraint.NotNull;
 import net.sf.oval.constraint.Size;
+import test.util.validation.UniqueDepName;
 import test.util.validation.UniqueNameDep;
 
 /**

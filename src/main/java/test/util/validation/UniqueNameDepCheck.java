@@ -20,25 +20,20 @@ public class UniqueNameDepCheck  extends AbstractAnnotationCheck<UniqueNameDep>{
     @Override
     public boolean isSatisfied(Object validatedObject, Object value,
                                OValContext context, Validator validator) throws OValException {
-        try
-        {
-            Department validate = (Department) value;
+        try {
+            Department validate = (Department) validatedObject;
             Department dep = departmentService.getByName(value.toString());
-            String name = dep.getName();
-            if(dep.getId()==null){
+            String s = dep.getName();
+            if(!value.equals(s)){
+                return true;
+            } else if(dep.getId()==validate.getId()){
                 return true;
             }
-            else if(!value.toString().equals(name))
-            {
-                return true;
-            }
-            return  false;
-        }
-        catch (SQLException e)
-        {
+
+        }catch (SQLException e){
             e.printStackTrace();
-            return true;
         }
+        return false;
 
     }
 }

@@ -27,13 +27,12 @@ public class DepartmentAddController implements InternalController {
         Department department = new Department();
         department.setName(request.getParameter("name"));
         String depId = request.getParameter("id");
-
-            oval.valid(department);
             if(depId.isEmpty()){
+                oval.valid(department);
                 departmentService.addDep(department);
-
             }else {
                 department.setId(Integer.valueOf(depId));
+                oval.valid(department);
                 departmentService.updateDep(department);
             }
             response.sendRedirect("/");
