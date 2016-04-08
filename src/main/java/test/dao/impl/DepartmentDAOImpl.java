@@ -13,6 +13,22 @@ import java.util.List;
  */
 public class DepartmentDAOImpl implements DepartmentDAO {
 
+    @Override
+    public Department getByName(String name) throws SQLException {
+        Department dep = new Department();
+        try(Connection connection = MYSQLConnection.getConnection()) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement("select * from dep where name=?")) {
+                preparedStatement.setString(1, name);
+                ResultSet rs = preparedStatement.executeQuery();
+                if (rs.next()) {
+                    dep.setId(rs.getInt("id"));
+                    dep.setName(rs.getString("name"));
+                }
+            }
+        }
+        return dep;
+    }
+
     public Department getById(Integer id) throws SQLException {
 
         Department dep = new Department();

@@ -9,6 +9,8 @@ import java.util.List;
  * Created by on 06.04.16.
  */
 public interface EmployeeService {
+
+    Employee getByEmail(String email) throws SQLException;
     Employee getById(Integer id) throws SQLException;
     List<Employee> getAll() throws SQLException;
     void addEmpl(Employee employee) throws SQLException;

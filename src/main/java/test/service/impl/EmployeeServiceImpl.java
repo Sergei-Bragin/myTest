@@ -16,6 +16,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     private EmployeeDAO employeeDAO = new EmployeeDAOImpl();
 
     @Override
+    public Employee getByEmail(String email) throws SQLException {
+        return employeeDAO.getByEmail(email);
+    }
+
+    @Override
     public Employee getById(Integer id) throws SQLException {
         return employeeDAO.getById(id);
     }

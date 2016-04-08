@@ -1,5 +1,8 @@
 package test.entity;
 
+import net.sf.oval.constraint.*;
+import test.util.validation.UniqueEmplEmail;
+
 import java.util.Date;
 
 /**
@@ -10,31 +13,29 @@ public class Employee {
 
     private Integer id;
 
+    @Size(min = 2 , max = 20, message = "Name must be range from 3 to 20 characters")
+    @NotEmpty( message = "Name can't be empty!")
     private String name;
+
+
+    @NotEmpty( message = "Email can't be empty!")
+    @UniqueEmplEmail
+    @Email(message = "Email incorrect")
     private String email;
+
+
+    @NotEmpty( message = "Salary can't be empty!")
+    @NotNegative (message = "Salary can't be empty")
     private Double salary;
+
+    @NotEmpty(message = "Date can't be empty")
     private Date date;
+
+
     private Integer depId;
 
     public Employee() {
 
-    }
-
-    public Employee(Integer id, String name, String email, Double salary, Date date, Integer depId) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.salary = salary;
-        this.date = date;
-        this.depId = depId;
-    }
-
-    public Employee(Integer id, String name, String email, Double salary, Date date) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.salary = salary;
-        this.date = date;
     }
 
     public Integer getId() {

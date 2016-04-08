@@ -4,7 +4,7 @@ import test.entity.Department;
 import test.exception.ValidException;
 import test.service.DepartmentService;
 import test.service.impl.DepartmentServiceImpl;
-import test.util.ValidatorOVAL;
+import test.util.validation.ValidatorOVAL;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -43,6 +43,7 @@ public class DepartmentAddController implements InternalController {
         catch (ValidException exception){
             Map<String,String> map =  exception.getMapError();
             request.setAttribute("error", map);
+            request.setAttribute("dep_name", request.getParameter("name"));
             request.getRequestDispatcher("WEB-INF/pages/dep/add.jsp").forward(request,response);
         }
 

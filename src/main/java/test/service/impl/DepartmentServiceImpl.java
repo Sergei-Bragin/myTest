@@ -22,6 +22,11 @@ public class DepartmentServiceImpl implements DepartmentService {
     private EmployeeDAO employeeDAO = new EmployeeDAOImpl();
 
     @Override
+    public Department getByName(String name) throws SQLException {
+        return departmentDAO.getByName(name);
+    }
+
+    @Override
     public Department getById(Integer id) throws SQLException {
         return departmentDAO.getById(id);
     }

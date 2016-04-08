@@ -11,6 +11,7 @@ import java.util.List;
 public interface EmployeeDAO {
 
      Employee getById(Integer id ) throws SQLException;
+     Employee getByEmail(String name ) throws SQLException;
      List<Employee> getAll()throws SQLException;
      void addEmpl(Employee employee)throws SQLException;
      void updateEmpl(Employee employee)throws SQLException;

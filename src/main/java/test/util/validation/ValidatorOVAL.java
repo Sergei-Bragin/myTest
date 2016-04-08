@@ -1,4 +1,4 @@
-package test.util;
+package test.util.validation;
 
 import net.sf.oval.ConstraintViolation;
 import net.sf.oval.Validator;

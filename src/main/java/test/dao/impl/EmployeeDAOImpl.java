@@ -35,6 +35,27 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
+    public Employee getByEmail(String name) throws SQLException {
+
+        Employee employee = new Employee();
+        try(Connection connection = MYSQLConnection.getConnection()) {
+            try(PreparedStatement preparedStatement = connection.prepareStatement("select * from empl where email=?")) {
+                preparedStatement.setString(1, name);
+                ResultSet rs = preparedStatement.executeQuery();
+                if (rs.next()) {
+                    employee.setId(rs.getInt("id"));
+                    employee.setName(rs.getString("name"));
+                    employee.setEmail(rs.getString("email"));
+                    employee.setDate(rs.getDate("date"));
+                    employee.setSalary(rs.getDouble("salary"));
+                    employee.setDepId(rs.getInt("id_dep"));
+                }
+            }
+        }
+        return employee;
+    }
+
+    @Override
     public List<Employee> getAll() throws SQLException {
 
         List<Employee> employees = new ArrayList<>();
