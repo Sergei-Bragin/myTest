@@ -28,13 +28,13 @@
                         <td>
                             <form method="post" action="/delDep">
                                 <input type="hidden" name="id" value=${dep.id}>
-                                <button class="button  primary" type="submit">Update</button>
+                                <button class="button  primary" type="submit">Delete</button>
                             </form>
                         </td>
                         <td>
                             <form method="post" action="/addDep">
                                 <input type="hidden" name="id" value=${dep.id}>
-                                <button class="button  primary" type="submit">Delete</button>
+                                <button class="button  primary" type="submit">Update</button>
                             </form>
                         </td>
                         <td>
