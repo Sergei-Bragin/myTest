@@ -5,6 +5,7 @@
     <title>Add Department</title>
     <link href="<c:url value="css/main.css"/>" rel="stylesheet" type="text/css">
     <link href="<c:url value="css/metro.css"/>" rel="stylesheet" type="text/css">
+    <script src="js/metro.js"></script>
 </head>
 <body>
 <div class="center">
