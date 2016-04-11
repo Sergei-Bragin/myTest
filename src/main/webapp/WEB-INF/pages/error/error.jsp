@@ -16,5 +16,6 @@
 <body>
     <a href="/">Return home page!</a>
         <div id="izo"><img src="/image/error.png"></div>
+<%----%>
 </body>
 </html>
