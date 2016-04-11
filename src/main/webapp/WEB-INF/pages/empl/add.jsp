@@ -10,23 +10,36 @@
 <html>
 <head>
     <title>Add Empl</title>
-    <link href="<c:url value="css/main.css"/>" rel="stylesheet">
+    <link href="<c:url value="css/main.css"/>" rel="stylesheet" type="text/css">
+    <link href="<c:url value="css/metro.css"/>" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div class="center">
-<form method="POST" action='saveEmpl'>
-    <input type="hidden" name="idEmp" value="<c:out value="${empl.id}"/>"/>
-    Name : <input type="text" name="name" value="<c:out value="${empl.name}"/>"/>
-    <span class="error">${error.get("name")}</span><br/>
-    Email : <input type="text" name="email" value="<c:out value="${empl.email}"/>"/>
-    <span class="error">${error.get("email")}</span><br/>
-    Date : <input type="date" name="date" value="<c:out value="${empl.date}"/>"/>
-    <span class="error">${error.get("date")}</span><br/>
-    Salary : <input type="text" name="salary" value="<c:out value="${empl.salary}"/>"/>
-    <span class="error">${error.get("salary")}</span><br/>
-    <input type="hidden" name="idDep" value="${id_dep}"/><br/>
-    <input class="button15" type="submit" value="Submit" />
-</form>
+    <form method="POST" action='saveEmpl' >
+
+        <input type="hidden" name="idEmp" value="<c:out value="$${empl.id}"/>"/>
+
+        <div><label>Employee name</label><br/>
+        <input class="input-control text" type="text" name="name"  placeholder="Input employee name here..." value="<c:out value="${empl.name}"/>"/>
+        <span class="error"/>${error.get("name")}</span></div>
+
+        <div><label>Employee email</label><br/>
+        <input class="input-control text" type="text" name="email"  placeholder="Input employee email here..." value="<c:out value="${empl.email}"/>"/>
+        <span class="error"/>${error.get("email")}</span></div>
+
+        <div><label>Date</label><br/>
+        <input class="input-control text" type="date" name="date"  value="<c:out value="${empl.date}"/>"/>
+        <span class="error"/>${error.get("date")}</span></div>
+
+        <div><label>Employee salary</label><br/>
+        <input class="input-control text" type="text" name="salary"  placeholder="Input employee salary here..." value="<c:out value="${empl.salary}"/>"/>
+        <span class="error"/>${error.get("salary")}</span></div>
+
+        <span><input type="hidden" name="idDep" value="${id_dep}"/></span>
+
+        <input class="button success" type="submit" value="Submit" />
+        <input class="button warning" type="reset" value="Reset"/>
+    </form>
 </div>
 </body>
 </html>

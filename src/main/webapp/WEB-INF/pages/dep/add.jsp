@@ -17,13 +17,6 @@
     <input class="button success" type="submit" value="Submit" />
     <input class="button warning" type="reset" value="Reset"/>
 </form>
-   <%-- <div class="input-control text full-size required">
-        <input type="text" data-validate-func="required" data-validate-hint="${error.get("name")}" data-validate-hint-position="right">
-        <span class="input-state-error mif-warning"></span>
-        <span class="input-state-success mif-checkmark"></span>
-        <input class="button success" type="submit" value="Submit"/>
-    </div>
---%>
 </div>
 </body>
 </html>

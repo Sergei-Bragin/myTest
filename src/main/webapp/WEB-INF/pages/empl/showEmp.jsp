@@ -42,7 +42,11 @@
         </tr>
     </c:forEach>
 </table>
-<a href="/addEmpl?id=${id_dep}">Add new one</a>
+    <form method="get" action="/addEmpl">
+        <input type="hidden" name="id" value="${id_dep}"/>
+        <button class="button primary block-shadow-success text-shadow" type="submit">+Add new one</button>
+    </form>
+<%--<a href="/addEmpl?id=${id_dep}">Add new one</a>--%>
 </div>
 </body>
 </html>
