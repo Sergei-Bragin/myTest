@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class MainController extends HttpServlet {
+
     private ControllerFactory controllerFactory = new ControllerFactory();
 
     @Override
@@ -15,9 +16,9 @@ public class MainController extends HttpServlet {
         String controllerAction = req.getRequestURI();
 
         InternalController controller = controllerFactory.getControllerByName(controllerAction);
-        if(controller==null){
+        if (controller == null) {
             controller = controllerFactory.getDefaultController();
         }
-        controller.execute(req,resp);
-      }
+        controller.execute(req, resp);
+    }
 }

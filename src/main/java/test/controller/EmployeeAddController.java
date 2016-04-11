@@ -50,7 +50,6 @@ public class EmployeeAddController implements InternalController {
             Map<String,String> map = exception.getMapError();
             request.setAttribute("error", map);
             request.setAttribute("empl", employee);
-            request.setAttribute("id_dep", depId);
             request.getRequestDispatcher("WEB-INF/pages/empl/add.jsp").forward(request,response);
         }
 
