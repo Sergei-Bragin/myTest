@@ -32,7 +32,7 @@ public class DepartmentCreateAddPageController implements InternalController {
             }
             request.getRequestDispatcher("WEB-INF/pages/dep/add.jsp").forward(request, response);
         }catch (SQLException e){
-            e.printStackTrace();
+            response.sendRedirect("/error");;
         }
     }
 }

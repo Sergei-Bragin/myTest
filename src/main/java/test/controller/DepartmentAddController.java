@@ -23,10 +23,10 @@ public class DepartmentAddController implements InternalController {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
         Department department = new Department();
         department.setName(request.getParameter("name"));
         String depId = request.getParameter("id");
+        try {
             if(depId.isEmpty()){
                 departmentService.addDep(department);
             }else {
@@ -35,12 +35,12 @@ public class DepartmentAddController implements InternalController {
             }
             response.sendRedirect("/");
         }catch (SQLException e){
-
+            response.sendRedirect("/error");
         }
         catch (ValidException exception){
             Map<String,String> map =  exception.getMapError();
             request.setAttribute("error", map);
-            request.setAttribute("dep_name", request.getParameter("name"));
+            request.setAttribute("department", department);
             request.getRequestDispatcher("WEB-INF/pages/dep/add.jsp").forward(request,response);
         }
 

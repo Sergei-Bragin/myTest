@@ -34,7 +34,7 @@ public class DepartmentShowEmplList implements InternalController {
             }
             request.getRequestDispatcher("WEB-INF/pages/empl/showEmp.jsp").forward(request, response);
         }catch (SQLException e){
-            e.printStackTrace();
+            response.sendRedirect("/error");;
         }
 
     }

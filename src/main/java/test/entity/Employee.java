@@ -1,6 +1,7 @@
 package test.entity;
 
 import net.sf.oval.constraint.*;
+import test.util.validation.EnglishLetters;
 import test.util.validation.UniqueEmplEmail;
 
 import java.util.Date;
@@ -15,6 +16,7 @@ public class Employee {
 
     @Size(min = 2 , max = 20, message = "Name must be range from 3 to 20 characters")
     @NotEmpty( message = "Name can't be empty!")
+    @EnglishLetters
     private String name;
 
 

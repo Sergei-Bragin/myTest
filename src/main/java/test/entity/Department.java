@@ -3,6 +3,7 @@ package test.entity;
 import net.sf.oval.constraint.NotEmpty;
 import net.sf.oval.constraint.NotNull;
 import net.sf.oval.constraint.Size;
+import test.util.validation.EnglishLetters;
 import test.util.validation.UniqueNameDep;
 
 /**
@@ -16,6 +17,7 @@ public class Department {
     @Size(min = 3, max = 16, message = "Name must be range from 3 to 16 characters")
     @NotEmpty(message = "Name can't be empty!")
     @UniqueNameDep
+    @EnglishLetters
     private String name;
 
     public Department() {

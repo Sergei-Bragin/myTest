@@ -27,7 +27,7 @@ public class EmployeeDelController implements InternalController {
             String url = "/showDepEmpl?id=" + depId;
             response.sendRedirect(url);
         }catch (SQLException e){
-
+            response.sendRedirect("/error");
         }
     }
 }

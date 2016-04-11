@@ -32,7 +32,7 @@ public class EmployeeCreateAddPageController implements InternalController {
             request.setAttribute("id_dep", request.getParameter("id"));
             request.getRequestDispatcher("WEB-INF/pages/empl/add.jsp").forward(request, response);
         }catch (SQLException e){
-            e.printStackTrace();
+            response.sendRedirect("/error");
         }
 
 

@@ -51,7 +51,7 @@
         <form method="get" action="/addDep">
             <button class="button primary block-shadow-success text-shadow" type="submit">+Add new one</button>
         </form>
-              <%--  <a href="/addDep">Add new one</a>--%>
+
     </div>
     </body>
 </html>

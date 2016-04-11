@@ -37,8 +37,8 @@
 
         <span><input type="hidden" name="idDep" value="${id_dep}"/></span>
 
-        <input class="button success" type="submit" value="Submit" />
-        <input class="button warning" type="reset" value="Reset"/>
+        <input class="button primary" type="submit" value="Submit" />
+        <input class="button primary" type="reset" value="Reset"/>
     </form>
 </div>
 </body>
