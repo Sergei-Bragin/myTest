@@ -16,7 +16,6 @@ public class Employee {
 
     @Size(min = 2 , max = 20, message = "Name must be range from 3 to 20 characters")
     @NotEmpty( message = "Name can't be empty!")
-    @EnglishLetters
     private String name;
 
 

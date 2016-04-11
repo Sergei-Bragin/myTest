@@ -45,11 +45,12 @@ public class EmployeeAddController implements InternalController {
             String url = "/showDepEmpl?id=" + depId;
             response.sendRedirect(url);
         }catch (SQLException e){
-            response.sendRedirect("/error");;
+            response.sendRedirect("/error");
         }catch (ValidException exception){
             Map<String,String> map = exception.getMapError();
             request.setAttribute("error", map);
             request.setAttribute("empl", employee);
+            request.setAttribute("id_dep", depId);
             request.getRequestDispatcher("WEB-INF/pages/empl/add.jsp").forward(request,response);
         }
 

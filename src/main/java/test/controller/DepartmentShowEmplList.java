@@ -4,6 +4,7 @@ import test.entity.Department;
 import test.entity.Employee;
 import test.service.EmployeeService;
 import test.service.impl.EmployeeServiceImpl;
+import test.util.ParseType;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +26,7 @@ public class DepartmentShowEmplList implements InternalController {
         try {
             String id = request.getParameter("id");
             if(id!=null){
-                Integer depId = Integer.valueOf(id);
+                Integer depId = ParseType.parseStringToInteger(id);
                 List<Employee> employees = employeeService.getEmplByDepId(Integer.valueOf(depId));
                 if(employees!=null){
                     request.setAttribute("id_dep",depId);
@@ -34,7 +35,7 @@ public class DepartmentShowEmplList implements InternalController {
             }
             request.getRequestDispatcher("WEB-INF/pages/empl/showEmp.jsp").forward(request, response);
         }catch (SQLException e){
-            response.sendRedirect("/error");;
+            response.sendRedirect("/error");
         }
 
     }

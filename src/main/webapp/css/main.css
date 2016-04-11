@@ -9,8 +9,9 @@ span.error{
 }
 
 body{
-    background: url("/image/bac1.jpg");
+    background: url("/image/bac1.jpg") no-repeat;
     background-size: 100%;
+
 }
 
 th, td {

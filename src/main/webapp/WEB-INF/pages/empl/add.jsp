@@ -17,7 +17,7 @@
 <div class="center">
     <form method="POST" action='saveEmpl' >
 
-        <input type="hidden" name="idEmp" value="<c:out value="$${empl.id}"/>"/>
+        <input type="hidden" name="idEmp" value="<c:out value="${empl.id}"/>"/>
 
         <div><label>Employee name</label><br/>
         <input class="input-control text" type="text" name="name"  placeholder="Input employee name here..." value="<c:out value="${empl.name}"/>"/>

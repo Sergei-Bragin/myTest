@@ -21,11 +21,11 @@ public class UniqueEmplEmailCheck extends AbstractAnnotationCheck<UniqueEmplEmai
     public boolean isSatisfied(Object validatedObject, Object value, OValContext context, Validator validator) throws OValException {
         try {
             Employee validate = (Employee) validatedObject;
-            Employee dep = employeeService.getByEmail(value.toString());
-            String s = dep.getName();
+            Employee empl = employeeService.getByEmail(value.toString());
+            String s = empl.getEmail();
             if(!value.equals(s)){
                 return true;
-            } else if(dep.getId()==validate.getId()){
+            } else if(empl.getId()==validate.getId()){
                 return true;
             }
 

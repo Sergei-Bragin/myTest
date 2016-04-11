@@ -28,7 +28,7 @@ public class DepartmentsDelController implements InternalController {
             request.getRequestDispatcher(forward).forward(request, response);
 
         }catch (SQLException e){
-            response.sendRedirect("/error");;
+            response.sendRedirect("/error");
         }
 
     }

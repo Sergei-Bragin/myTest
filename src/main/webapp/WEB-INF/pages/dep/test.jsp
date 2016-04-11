@@ -10,7 +10,7 @@
 <body>
     <div class="center">
 
-                <table class="table">
+                <table class="table hovered">
                     <tbody>
                         <tr>
                             <th>Id</th>
@@ -49,7 +49,7 @@
                 </table>
 
         <form method="get" action="/addDep">
-            <button class="button primary block-shadow-success text-shadow" type="submit">+Add new one</button>
+            <button class="button primary block-shadow-success text-shadow " type="submit">+Add new one</button>
         </form>
 
     </div>

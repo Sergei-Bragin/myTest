@@ -23,7 +23,7 @@ public class DepartmentsShowAllController implements InternalController {
             request.setAttribute("deps", departmentService.getAll());
             request.getRequestDispatcher(forward).forward(request, response);
         }catch (SQLException e){
-            response.sendRedirect("/error");;
+            response.sendRedirect("/error");
         }
     }
 }
