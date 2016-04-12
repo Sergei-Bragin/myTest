@@ -13,8 +13,10 @@ public class Main {
 
         session.beginTransaction();
         Department dep = new Department();
-        dep.setName("MAXXXXIM");
+
+        dep.setName("gex");
         session.save(dep);
+        session.getTransaction().commit();
 
     }
 }
