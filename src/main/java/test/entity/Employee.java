@@ -1,5 +1,6 @@
 package test.entity;
 
+import lombok.Data;
 import net.sf.oval.constraint.*;
 import test.util.validation.EnglishLetters;
 import test.util.validation.UniqueEmplEmail;
@@ -9,7 +10,7 @@ import java.util.Date;
 /**
  * Created by on 04.04.16.
  */
-public class Employee {
+@Data public class Employee {
 
 
     private Integer id;
@@ -36,10 +37,6 @@ public class Employee {
 
 
     private Integer depId;
-
-    public Employee() {
-
-    }
 
     public Integer getId() {
         return id;
