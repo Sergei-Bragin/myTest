@@ -48,8 +48,6 @@ public class EmployeeAddController implements InternalController {
             }
             String url = "/showDepEmpl?id=" + depId;
             response.sendRedirect(url);
-        }catch (SQLException e){
-            response.sendRedirect("/error");
         }catch (ValidException exception){
             Map<String,String> map = exception.getMapError();
             request.setAttribute("error", map);

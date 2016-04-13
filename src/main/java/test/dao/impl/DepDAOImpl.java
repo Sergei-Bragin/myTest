@@ -21,9 +21,10 @@ import java.util.Map;
 @Repository
 public class DepDAOImpl implements DepartmentDAO {
 
-    @Autowired
     private DataSource dataSource;
+    private JdbcTemplate jdbcTemplate;
 
+    @Autowired
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
     }
@@ -31,7 +32,7 @@ public class DepDAOImpl implements DepartmentDAO {
     @Override
     public Department getById(Integer id){
         String query = "select id, name from dep where id=?";
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        jdbcTemplate = new JdbcTemplate(dataSource);
         Department dep =jdbcTemplate.queryForObject(query, new Object[]{id}, new RowMapper<Department>() {
             @Override
             public Department mapRow(ResultSet resultSet, int i) throws SQLException {
@@ -47,7 +48,7 @@ public class DepDAOImpl implements DepartmentDAO {
     @Override
     public Department getByName(String name){
         String query = "select id, name from dep where name=?";
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        jdbcTemplate = new JdbcTemplate(dataSource);
         Department dep =jdbcTemplate.queryForObject(query, new Object[]{name}, new RowMapper<Department>() {
             @Override
             public Department mapRow(ResultSet resultSet, int i) throws SQLException {
@@ -63,7 +64,7 @@ public class DepDAOImpl implements DepartmentDAO {
     @Override
     public List<Department> getAll(){
         String query = "select * from dep";
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        jdbcTemplate = new JdbcTemplate(dataSource);
         List<Department> depList = new ArrayList<>();
 
         List<Map<String,Object>> depRows = jdbcTemplate.queryForList(query);
@@ -80,18 +81,22 @@ public class DepDAOImpl implements DepartmentDAO {
     @Override
     public void updateDep(Department department){
         String query;
+        Object[] args;
         if (department.getId()!= null){
             query = "update dep set name=? where id=?";
-        } else query = "INSERT  into dep (neme, id) VALUE (?,?)";
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        Object[] args = new Object[]{department.getName(),department.getId()};
+            args = new Object[]{department.getName(),department.getId()};
+        } else{
+            query = "insert into dep (name) value (?)";
+            args = new Object[]{department.getName()};
+        }
+        jdbcTemplate = new JdbcTemplate(dataSource);
         jdbcTemplate.update(query,args);
     }
 
     @Override
     public void delDep(Integer id){
         String query = "delete from dep where id=?";
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        jdbcTemplate = new JdbcTemplate(dataSource);
         jdbcTemplate.update(query,id);
     }
 }

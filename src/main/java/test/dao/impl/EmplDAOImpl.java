@@ -21,17 +21,20 @@ import java.util.Map;
 @Repository
 public class EmplDAOImpl implements EmployeeDAO {
 
-    @Autowired
-    private DataSource dataSource;
 
+    private DataSource dataSource;
+    private JdbcTemplate jdbcTemplate;
+
+    @Autowired
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
+
     @Override
     public Employee getById(Integer id) {
         String query = "select * from empl where id=?";
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        jdbcTemplate = new JdbcTemplate(dataSource);
         Employee employee = jdbcTemplate.queryForObject(query, new Object[]{id}, new RowMapper<Employee>() {
             @Override
             public Employee mapRow(ResultSet resultSet, int i) throws SQLException {
@@ -51,7 +54,7 @@ public class EmplDAOImpl implements EmployeeDAO {
     @Override
     public Employee getByEmail(String email) {
         String query = "select * from empl where email=?";
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        jdbcTemplate = new JdbcTemplate(dataSource);
         Employee empl = jdbcTemplate.queryForObject(query, new Object[]{email}, new RowMapper<Employee>() {
             @Override
             public Employee mapRow(ResultSet resultSet, int i) throws SQLException {
@@ -71,7 +74,7 @@ public class EmplDAOImpl implements EmployeeDAO {
     @Override
     public List<Employee> getAll() {
         String query = "select * from empl";
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        jdbcTemplate = new JdbcTemplate(dataSource);
         List<Employee> emplList = new ArrayList<>();
 
         List<Map<String,Object>> empRows = jdbcTemplate.queryForList(query);
@@ -91,18 +94,22 @@ public class EmplDAOImpl implements EmployeeDAO {
     @Override
     public void updateEmpl(Employee empl) {
         String query;
+        Object[] args;
         if(empl.getId()!=null){
             query = "update empl set name = ?, email = ?, date = ?, salary = ?, id_dep = ?  where id = ?";
-        }else query = "insert into empl (name, email, date, salary, id_dep, id) values(?,?,?,?,?,?)";
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        Object[] args = new Object[]{empl.getName(), empl.getEmail(),empl.getDate(),empl.getSalary(),empl.getDepId(),empl.getId()};
+            args = new Object[]{empl.getName(), empl.getEmail(),empl.getDate(),empl.getSalary(),empl.getDepId(),empl.getId()};
+        }else{
+            query = "insert into empl (name, email, date, salary, id_dep) values(?,?,?,?,?)";
+            args = new Object[]{empl.getName(), empl.getEmail(),empl.getDate(),empl.getSalary(),empl.getDepId()};
+        }
+        jdbcTemplate = new JdbcTemplate(dataSource);
         jdbcTemplate.update(query,args);
     }
 
     @Override
     public void delEmpl(Integer id) {
         String query = "delete from empl where id=?";
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        jdbcTemplate = new JdbcTemplate(dataSource);
         jdbcTemplate.update(query,id);
     }
 

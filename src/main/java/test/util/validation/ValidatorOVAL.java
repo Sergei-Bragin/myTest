@@ -17,10 +17,14 @@ import java.util.Map;
 /**
  * Created by on 07.04.16.
  */
-@Component
+
 public class ValidatorOVAL {
 
-    private Validator validator = new Validator();
+    private Validator validator;
+
+    public void setValidator(Validator validator) {
+        this.validator = validator;
+    }
 
     public void valid(Object object) throws ValidException  {
 

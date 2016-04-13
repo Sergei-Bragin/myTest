@@ -22,12 +22,10 @@ public class DepartmentsShowAllController implements InternalController {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
+
             String forward = "WEB-INF/pages/dep/test.jsp";
             request.setAttribute("deps", departmentService.getAll());
             request.getRequestDispatcher(forward).forward(request, response);
-        }catch (SQLException e){
-            response.sendRedirect("/error");
-        }
+
     }
 }

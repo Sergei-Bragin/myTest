@@ -39,8 +39,6 @@ public class DepartmentAddController implements InternalController {
                 departmentService.updateDep(department);
             }
             response.sendRedirect("/");
-        }catch (SQLException e){
-            response.sendRedirect("/error");
         }
         catch (ValidException exception){
             Map<String,String> map =  exception.getMapError();

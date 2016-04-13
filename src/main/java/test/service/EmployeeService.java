@@ -11,10 +11,10 @@ import java.util.List;
  */
 public interface EmployeeService {
 
-    Employee getByEmail(String email) throws SQLException;
-    Employee getById(Integer id) throws SQLException;
-    List<Employee> getAll() throws SQLException;
-    void updateEmpl(Employee employee) throws SQLException, ValidException;
-    void delEmpl(Integer id) throws SQLException;
-    List<Employee> getEmplByDepId(Integer id) throws SQLException;
+    Employee getByEmail(String email);
+    Employee getById(Integer id);
+    List<Employee> getAll();
+    void updateEmpl(Employee employee)throws ValidException;
+    void delEmpl(Integer id);
+    List<Employee> getEmplByDepId(Integer id);
 }

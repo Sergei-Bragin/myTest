@@ -23,15 +23,12 @@ public class EmployeeDelController implements InternalController {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        try {
-            Integer id = Integer.parseInt((request.getParameter("id")));
-            Integer depId = Integer.parseInt((request.getParameter("depId")));
-            employeeService.delEmpl(id);
-            String url = "/showDepEmpl?id=" + depId;
-            response.sendRedirect(url);
-        }catch (SQLException e){
-            response.sendRedirect("/error");
-        }
+        Integer id = Integer.parseInt((request.getParameter("id")));
+        Integer depId = Integer.parseInt((request.getParameter("depId")));
+        employeeService.delEmpl(id);
+        String url = "/showDepEmpl?id=" + depId;
+        response.sendRedirect(url);
+
     }
 }
 

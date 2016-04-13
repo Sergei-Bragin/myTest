@@ -24,19 +24,17 @@ public class DepartmentCreateAddPageController implements InternalController {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        try {
-            String id = request.getParameter("id");
-            if(id!=null){
-                Integer depId = Integer.valueOf(id);
 
-                Department department = departmentService.getById(Integer.valueOf(depId));
-                if(department!=null){
-                    request.setAttribute("department",department);
-                }
+        String id = request.getParameter("id");
+        if(id!=null){
+            Integer depId = Integer.valueOf(id);
+
+            Department department = departmentService.getById(Integer.valueOf(depId));
+            if(department!=null){
+                request.setAttribute("department",department);
             }
-            request.getRequestDispatcher("WEB-INF/pages/dep/add.jsp").forward(request, response);
-        }catch (SQLException e){
-            response.sendRedirect("/error");
         }
+        request.getRequestDispatcher("WEB-INF/pages/dep/add.jsp").forward(request, response);
+
     }
 }

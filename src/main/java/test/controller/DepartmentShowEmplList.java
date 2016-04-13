@@ -27,20 +27,18 @@ public class DepartmentShowEmplList implements InternalController {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        try {
-            String id = request.getParameter("id");
-            if(id!=null){
-                Integer depId = ParseType.parseStringToInteger(id);
-                List<Employee> employees = employeeService.getEmplByDepId(Integer.valueOf(depId));
-                if(employees!=null){
-                    request.setAttribute("id_dep",depId);
-                    request.setAttribute("empls",employees);
-                }
+
+        String id = request.getParameter("id");
+        if(id!=null){
+            Integer depId = ParseType.parseStringToInteger(id);
+            List<Employee> employees = employeeService.getEmplByDepId(Integer.valueOf(depId));
+            if(employees!=null){
+                request.setAttribute("id_dep",depId);
+                request.setAttribute("empls",employees);
             }
-            request.getRequestDispatcher("WEB-INF/pages/empl/showEmp.jsp").forward(request, response);
-        }catch (SQLException e){
-            response.sendRedirect("/error");
         }
+        request.getRequestDispatcher("WEB-INF/pages/empl/showEmp.jsp").forward(request, response);
+
 
     }
 

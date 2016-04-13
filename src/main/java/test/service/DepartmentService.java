@@ -11,10 +11,10 @@ import java.util.List;
  */
 public interface DepartmentService {
 
-    Department getById(Integer id)throws SQLException;
-    Department getByName(String email)throws SQLException;
-    List<Department> getAll()throws SQLException;
-    void updateDep(Department department) throws SQLException, ValidException;
-    void delDep(Integer id) throws SQLException;
+    Department getById(Integer id);
+    Department getByName(String email);
+    List<Department> getAll();
+    void updateDep(Department department) throws ValidException;
+    void delDep(Integer id);
 
 }

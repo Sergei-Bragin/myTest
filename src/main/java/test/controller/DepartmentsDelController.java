@@ -23,14 +23,10 @@ public class DepartmentsDelController implements InternalController {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
-            Integer depId = Integer.parseInt(request.getParameter("id"));
-            departmentService.delDep(depId);
-            response.sendRedirect("/");
 
-        }catch (SQLException e){
-            response.sendRedirect("/error");
-        }
+        Integer depId = Integer.parseInt(request.getParameter("id"));
+        departmentService.delDep(depId);
+        response.sendRedirect("/");
 
     }
 }
