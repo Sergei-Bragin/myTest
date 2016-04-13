@@ -1,5 +1,7 @@
 package test.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import test.dao.EmployeeDAO;
 import test.dao.impl.EmplDAOImpl;
 import test.entity.Employee;
@@ -13,10 +15,14 @@ import java.util.List;
 /**
  * Created by on 06.04.16.
  */
+@Service
 public class EmployeeServiceImpl implements EmployeeService {
 
-    private EmployeeDAO employeeDAO = new EmplDAOImpl();
-    private ValidatorOVAL validatorOVAL = new ValidatorOVAL();
+    @Autowired
+    private EmployeeDAO employeeDAO;
+
+    @Autowired
+    private ValidatorOVAL validatorOVAL;
 
     @Override
     public Employee getByEmail(String email) throws SQLException {

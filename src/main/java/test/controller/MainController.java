@@ -1,24 +1,30 @@
 package test.controller;
 
 
+import com.sun.net.httpserver.HttpHandler;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Component;
+import org.springframework.web.HttpRequestHandler;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Map;
 
-public class MainController extends HttpServlet {
+@Component(value = "MainController")
+public class MainController implements HttpRequestHandler {
 
-    private ControllerFactory controllerFactory = new ControllerFactory();
+    @Autowired
+    private Map<String,InternalController> controllerFactory;
+
 
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String controllerAction = req.getRequestURI();
-
-        InternalController controller = controllerFactory.getControllerByName(controllerAction);
-        if (controller == null) {
-            controller = controllerFactory.getDefaultController();
-        }
-        controller.execute(req, resp);
+    public void handleRequest(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
+        String requestURI = httpServletRequest.getRequestURI();
+        InternalController internalController = controllerFactory.get(requestURI);
+        internalController.execute(httpServletRequest, httpServletResponse);
     }
 }

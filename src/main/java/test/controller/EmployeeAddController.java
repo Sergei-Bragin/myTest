@@ -1,5 +1,7 @@
 package test.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import test.entity.Employee;
 import test.exception.ValidException;
 import test.service.EmployeeService;
@@ -18,9 +20,11 @@ import java.util.Map;
 /**
  * Created by on 06.04.16.
  */
+@Component("/saveEmpl")
 public class EmployeeAddController implements InternalController {
 
-    private EmployeeService employeeService = new EmployeeServiceImpl();
+    @Autowired
+    private EmployeeService employeeService;
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

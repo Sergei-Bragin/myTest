@@ -4,6 +4,8 @@ import net.sf.oval.ConstraintViolation;
 import net.sf.oval.Validator;
 import net.sf.oval.context.FieldContext;
 import net.sf.oval.context.OValContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import test.exception.ValidException;
 
 
@@ -15,6 +17,7 @@ import java.util.Map;
 /**
  * Created by on 07.04.16.
  */
+@Component
 public class ValidatorOVAL {
 
     private Validator validator = new Validator();

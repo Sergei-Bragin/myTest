@@ -1,5 +1,7 @@
 package test.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import test.entity.Department;
 import test.entity.Employee;
 import test.service.EmployeeService;
@@ -16,9 +18,11 @@ import java.util.List;
 /**
  * Created by on 06.04.16.
  */
+@Component("/showDepEmpl")
 public class DepartmentShowEmplList implements InternalController {
 
-    private EmployeeService employeeService = new EmployeeServiceImpl();
+    @Autowired
+    private EmployeeService employeeService;
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

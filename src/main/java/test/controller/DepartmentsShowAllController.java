@@ -1,5 +1,7 @@
 package test.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import test.service.DepartmentService;
 import test.service.impl.DepartmentServiceImpl;
 
@@ -12,9 +14,11 @@ import java.sql.SQLException;
 /**
  * Created by on 04.04.16.
  */
+@Component("/")
 public class DepartmentsShowAllController implements InternalController {
 
-    private DepartmentService departmentService = new DepartmentServiceImpl();
+    @Autowired
+    private DepartmentService departmentService;
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

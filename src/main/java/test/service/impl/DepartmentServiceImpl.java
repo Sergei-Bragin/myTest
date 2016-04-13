@@ -1,5 +1,7 @@
 package test.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import test.dao.DepartmentDAO;
 import test.dao.EmployeeDAO;
 import test.dao.impl.DepDAOImpl;
@@ -20,11 +22,16 @@ import java.util.List;
 /**
  * Created by on 04.04.16.
  */
+@Service
 public class DepartmentServiceImpl implements DepartmentService {
 
-    private DepartmentDAO departmentDAO = new DepDAOImpl();
-    private EmployeeDAO employeeDAO = new EmplDAOImpl();
-    private ValidatorOVAL validatorOVAL = new ValidatorOVAL();
+    @Autowired
+    private DepartmentDAO departmentDAO;
+    @Autowired
+    private EmployeeDAO employeeDAO;
+
+    @Autowired
+    private ValidatorOVAL validatorOVAL;
 
     @Override
     public Department getByName(String name) throws SQLException {

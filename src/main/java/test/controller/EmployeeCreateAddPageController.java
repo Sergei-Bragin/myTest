@@ -1,5 +1,7 @@
 package test.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import test.entity.Employee;
 import test.service.EmployeeService;
 import test.service.impl.EmployeeServiceImpl;
@@ -13,9 +15,11 @@ import java.sql.SQLException;
 /**
  * Created by on 06.04.16.
  */
+@Component("/addEmpl")
 public class EmployeeCreateAddPageController implements InternalController {
 
-    private EmployeeService employeeService = new EmployeeServiceImpl();
+    @Autowired
+    private EmployeeService employeeService;
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

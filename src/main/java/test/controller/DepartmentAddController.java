@@ -1,5 +1,8 @@
 package test.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import test.entity.Department;
 import test.exception.ValidException;
 import test.service.DepartmentService;
@@ -16,9 +19,11 @@ import java.util.Map;
 /**
  * Created by on 05.04.16.
  */
+@Component("/saveDep")
 public class DepartmentAddController implements InternalController {
 
-    private DepartmentService departmentService = new DepartmentServiceImpl();
+    @Autowired
+    private DepartmentService departmentService;
 
 
     @Override

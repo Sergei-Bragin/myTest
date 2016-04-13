@@ -1,7 +1,9 @@
 package test.dao.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 import test.dao.EmployeeDAO;
 import test.entity.Employee;
 import test.util.ParseType;
@@ -16,8 +18,10 @@ import java.util.Map;
 /**
  * Created by on 12.04.16.
  */
+@Repository
 public class EmplDAOImpl implements EmployeeDAO {
 
+    @Autowired
     private DataSource dataSource;
 
     public void setDataSource(DataSource dataSource) {

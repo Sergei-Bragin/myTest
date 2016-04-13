@@ -1,7 +1,9 @@
 package test.dao.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 import test.dao.DepartmentDAO;
 import test.entity.Department;
 import test.util.ParseType;
@@ -16,8 +18,10 @@ import java.util.Map;
 /**
  * Created by on 12.04.16.
  */
+@Repository
 public class DepDAOImpl implements DepartmentDAO {
 
+    @Autowired
     private DataSource dataSource;
 
     public void setDataSource(DataSource dataSource) {
@@ -67,7 +71,7 @@ public class DepDAOImpl implements DepartmentDAO {
         for (Map<String, Object> depRow : depRows){
             Department dep  = new Department();
             dep.setId(ParseType.parseStringToInteger(String.valueOf(depRow.get("id"))));
-            dep.setName(String.valueOf(depRow.get("id")));
+            dep.setName(String.valueOf(depRow.get("name")));
             depList.add(dep);
         }
         return depList;
