@@ -6,10 +6,13 @@ import net.sf.oval.constraint.Size;
 import test.util.validation.EnglishLetters;
 import test.util.validation.UniqueNameDep;
 
+import java.io.Serializable;
+
 /**
  * Created by on 04.04.16.
  */
-public class Department {
+
+public class Department implements Serializable {
 
     private Integer id;
 

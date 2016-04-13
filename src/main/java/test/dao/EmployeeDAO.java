@@ -10,11 +10,10 @@ import java.util.List;
  */
 public interface EmployeeDAO {
 
-     Employee getById(Integer id ) throws SQLException;
-     Employee getByEmail(String name ) throws SQLException;
-     List<Employee> getAll()throws SQLException;
-     void addEmpl(Employee employee)throws SQLException;
-     void updateEmpl(Employee employee)throws SQLException;
-     void delEmpl(Integer id)throws SQLException;
-     List<Employee> getEmplByDepId(Integer id)throws SQLException;
+     Employee getById(Integer id );
+     Employee getByEmail(String name );
+     List<Employee> getAll();
+     void updateEmpl(Employee employee);
+     void delEmpl(Integer id);
+     List<Employee> getEmplByDepId(Integer id);
 }

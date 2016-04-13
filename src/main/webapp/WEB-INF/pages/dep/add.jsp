@@ -9,14 +9,14 @@
 </head>
 <body>
 <div class="center">
-<form method="POST" action='saveDep' >
-    <input type="hidden" name="id" value="<c:out value="${department.id}"/>"/>
-    <label>Department name</label><br/>
-    <input class="input-control text" type="text" name="name"  placeholder="Input you name here..." value="<c:out value="${department.name}"/>"/>
-    <span class="error"/>${error.get("name")}</span><br/>
-    <input class="button primary" type="submit" value="Submit" />
-    <input class="button primary" type="reset" value="Reset"/>
-</form>
+    <form method="POST" action='saveDep' >
+        <input type="hidden" name="id" value="<c:out value="${department.id}"/>"/>
+        <label>Department name</label><br/>
+        <input class="input-control text" type="text" name="name"  placeholder="Input you name here..." value="<c:out value="${department.name}"/>"/>
+        <span class="error"/>${error.get("name")}</span><br/>
+        <input class="button primary" type="submit" value="Submit" />
+        <input class="button primary" type="reset" value="Reset"/>
+    </form>
 </div>
 </body>
 </html>

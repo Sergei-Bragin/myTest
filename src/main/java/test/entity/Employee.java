@@ -4,12 +4,13 @@ import net.sf.oval.constraint.*;
 import test.util.validation.EnglishLetters;
 import test.util.validation.UniqueEmplEmail;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by on 04.04.16.
  */
-public class Employee {
+public class Employee implements Serializable {
 
 
     private Integer id;

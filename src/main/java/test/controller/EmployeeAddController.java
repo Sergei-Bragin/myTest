@@ -37,7 +37,7 @@ public class EmployeeAddController implements InternalController {
         try {
 
             if (idEmpl.isEmpty()){
-                employeeService.addEmpl(employee);
+                employeeService.updateEmpl(employee);
             }else{
                 employee.setId(ParseType.parseStringToInteger(idEmpl));
                 employeeService.updateEmpl(employee);

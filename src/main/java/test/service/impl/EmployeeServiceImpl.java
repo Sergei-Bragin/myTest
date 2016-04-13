@@ -1,7 +1,7 @@
 package test.service.impl;
 
 import test.dao.EmployeeDAO;
-import test.dao.impl.EmployeeDAOImpl;
+import test.dao.impl.EmplDAOImpl;
 import test.entity.Employee;
 import test.exception.ValidException;
 import test.service.EmployeeService;
@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class EmployeeServiceImpl implements EmployeeService {
 
-    private EmployeeDAO employeeDAO = new EmployeeDAOImpl();
+    private EmployeeDAO employeeDAO = new EmplDAOImpl();
     private ValidatorOVAL validatorOVAL = new ValidatorOVAL();
 
     @Override
@@ -31,12 +31,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public List<Employee> getAll() throws SQLException {
         return employeeDAO.getAll();
-    }
-
-    @Override
-    public void addEmpl(Employee employee) throws SQLException, ValidException {
-        validatorOVAL.valid(employee);
-        employeeDAO.addEmpl(employee);
     }
 
     @Override

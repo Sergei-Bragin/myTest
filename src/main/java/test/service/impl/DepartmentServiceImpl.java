@@ -2,17 +2,19 @@ package test.service.impl;
 
 import test.dao.DepartmentDAO;
 import test.dao.EmployeeDAO;
-import test.dao.impl.DepartmentDAOImpl;
-import test.dao.impl.EmployeeDAOImpl;
+import test.dao.impl.DepDAOImpl;
+
+import test.dao.impl.EmplDAOImpl;
+
 import test.entity.Department;
 import test.entity.Employee;
 import test.exception.ValidException;
 import test.service.DepartmentService;
-import test.service.EmployeeService;
+;
 import test.util.validation.ValidatorOVAL;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
+
 import java.util.List;
 
 /**
@@ -20,8 +22,8 @@ import java.util.List;
  */
 public class DepartmentServiceImpl implements DepartmentService {
 
-    private DepartmentDAO departmentDAO = new DepartmentDAOImpl();
-    private EmployeeDAO employeeDAO = new EmployeeDAOImpl();
+    private DepartmentDAO departmentDAO = new DepDAOImpl();
+    private EmployeeDAO employeeDAO = new EmplDAOImpl();
     private ValidatorOVAL validatorOVAL = new ValidatorOVAL();
 
     @Override
@@ -38,14 +40,6 @@ public class DepartmentServiceImpl implements DepartmentService {
     public List<Department> getAll() throws SQLException {
         return departmentDAO.getAll();
     }
-
-    @Override
-    public void addDep(Department department) throws SQLException, ValidException {
-            validatorOVAL.valid(department);
-            departmentDAO.addDep(department);
-
-    }
-
     @Override
     public void updateDep(Department department) throws SQLException, ValidException {
         validatorOVAL.valid(department);

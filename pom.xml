@@ -8,19 +8,67 @@
   <name>myTest Maven Webapp</name>
   <url>http://maven.apache.org</url>
 
+  <properties>
+    <java.version>1.7</java.version>
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
+    <spring.version>4.2.1.RELEASE</spring.version>
+    <spring.data.jpa.version>1.8.0.RELEASE</spring.data.jpa.version>
+    <version.jackson>1.9.13</version.jackson>
+    <!-- jackson -->
+    <jackson.version>2.5.2</jackson.version>
+    <jackson.mapper.version>1.9.13</jackson.mapper.version>
+  </properties>
+
   <dependencies>
+
+    <!--MySQL database driven-->
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
       <version>5.1.6</version>
     </dependency>
 
+    <!--Spring-->
     <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-servlet-api</artifactId>
-      <version>7.0.21</version>
-      <scope>provided</scope>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>${spring.version}</version>
     </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-beans</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-tx</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-orm</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-jpa</artifactId>
+      <version>${spring.data.jpa.version}</version>
+    </dependency>
+
+
+
+    <!--Oval validation-->
 
     <dependency>
       <groupId>net.sf.oval</groupId>
@@ -65,7 +113,7 @@
     </dependency>
   </dependencies>
 
-  <build>
+  <!--<build>
     <finalName>myTest</finalName>
     <plugins>
       <plugin>
@@ -74,6 +122,19 @@
         <configuration>
           <source>1.7</source>
           <target>1.7</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>-->
+
+  <build>
+    <finalName>myTest</finalName>
+    <plugins>
+      <plugin>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+          <webXml>src/main/webapp/WEB-INF/web.xml</webXml>
         </configuration>
       </plugin>
     </plugins>

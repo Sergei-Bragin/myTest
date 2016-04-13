@@ -1,5 +1,6 @@
 package test.dao;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import test.entity.Department;
 
 import java.sql.SQLException;
@@ -10,11 +11,10 @@ import java.util.List;
  */
 public interface DepartmentDAO {
 
-    Department getById(Integer id)throws SQLException;
-    Department getByName(String name)throws SQLException;
-    List<Department> getAll()throws SQLException;
-    void addDep(Department department)throws SQLException;
-    void updateDep(Department department)throws SQLException;
-    void delDep(Integer id)throws SQLException;
+    Department getById(Integer id);
+    Department getByName(String name);
+    List<Department> getAll();
+    void updateDep(Department department);
+    void delDep(Integer id);
 
 }

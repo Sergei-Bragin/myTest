@@ -1,5 +1,7 @@
+/*
 package test.dao.impl;
 
+import org.springframework.stereotype.Repository;
 import test.dao.DepartmentDAO;
 import test.entity.Department;
 import test.util.MYSQLConnection;
@@ -8,9 +10,12 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+*/
 /**
  * Created by on 04.04.16.
- */
+ *//*
+
+@Repository("departmentDAO")
 public class DepartmentDAOImpl implements DepartmentDAO {
 
     @Override
@@ -98,3 +103,4 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 
     }
 }
+*/

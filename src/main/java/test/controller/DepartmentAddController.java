@@ -28,7 +28,7 @@ public class DepartmentAddController implements InternalController {
         String depId = request.getParameter("id");
         try {
             if(depId.isEmpty()){
-                departmentService.addDep(department);
+                departmentService.updateDep(department);
             }else {
                 department.setId(Integer.valueOf(depId));
                 departmentService.updateDep(department);
