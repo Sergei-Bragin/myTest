@@ -2,6 +2,7 @@ package test.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import test.dao.EmployeeDAO;
 import test.entity.Employee;
 import test.exception.ValidException;
@@ -18,9 +19,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
     private EmployeeDAO employeeDAO;
-
     @Autowired
     private ValidatorOVAL validatorOVAL;
+
 
     @Override
     public Employee getByEmail(String email) {
@@ -37,12 +38,14 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeDAO.getAll();
     }
 
+    @Transactional
     @Override
     public void updateEmpl(Employee employee) throws ValidException {
         validatorOVAL.valid(employee);
         employeeDAO.updateEmpl(employee);
     }
 
+    @Transactional
     @Override
     public void delEmpl(Integer id) {
         employeeDAO.delEmpl(id);

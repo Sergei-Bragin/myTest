@@ -1,5 +1,6 @@
 package test.service;
 
+import org.springframework.transaction.annotation.Transactional;
 import test.entity.Employee;
 import test.exception.ValidException;
 
@@ -9,6 +10,7 @@ import java.util.List;
 /**
  * Created by on 06.04.16.
  */
+
 public interface EmployeeService {
 
     Employee getByEmail(String email);

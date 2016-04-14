@@ -2,6 +2,7 @@ package test.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import test.dao.DepartmentDAO;
 import test.dao.EmployeeDAO;
 import test.entity.Department;
@@ -22,7 +23,6 @@ public class DepartmentServiceImpl implements DepartmentService {
     private DepartmentDAO departmentDAO;
     @Autowired
     private EmployeeDAO employeeDAO;
-
     @Autowired
     private ValidatorOVAL validatorOVAL;
 
@@ -41,12 +41,14 @@ public class DepartmentServiceImpl implements DepartmentService {
         return departmentDAO.getAll();
     }
 
+    @Transactional
     @Override
     public void updateDep(Department department) throws ValidException {
         validatorOVAL.valid(department);
         departmentDAO.updateDep(department);
     }
 
+    @Transactional
     @Override
     public void delDep(Integer id) {
         List<Employee> employees = employeeDAO.getEmplByDepId(id);

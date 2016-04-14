@@ -10,14 +10,19 @@
     <context:component-scan base-package="test"/>
 
     <import resource="spring-datasource.xml"/>
-    <bean class="net.sf.oval.integration.spring.SpringInjector"/>
 
+    <!--OVAL-->
+    <bean class="net.sf.oval.integration.spring.SpringInjector"/>
     <bean class="test.util.validation.ValidatorOVAL">
         <property name="validator">
             <bean class="net.sf.oval.Validator"/>
         </property>
     </bean>
-
     <bean class="test.util.validation.ApplicationContextHolder"/>
+
+    <!--Transactional-->
+    <bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
 
 </beans>
