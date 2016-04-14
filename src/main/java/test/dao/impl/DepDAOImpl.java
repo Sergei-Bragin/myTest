@@ -59,10 +59,10 @@ public class DepDAOImpl implements DepartmentDAO {
             Department dep =jdbcTemplate.queryForObject(query, new Object[]{name}, new RowMapper<Department>() {
                 @Override
                 public Department mapRow(ResultSet resultSet, int i) throws SQLException {
-                    Department department = new Department();
-                    department.setId(resultSet.getInt("id"));
-                    department.setName(resultSet.getString("name"));
-                    return department;
+                    Department dep = new Department();
+                    dep.setName(resultSet.getString("name"));
+                    dep.setId(resultSet.getInt("id"));
+                    return dep;
                 }
             });
             return dep;

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 import test.entity.Employee;
 import test.service.EmployeeService;
+import test.service.impl.EmployeeServiceImpl;
 
 
 /**
@@ -17,8 +18,8 @@ import test.service.EmployeeService;
 @Component
 public class UniqueEmplEmailCheck extends AbstractAnnotationCheck<UniqueEmplEmail> {
 
-    @Autowired
-    private EmployeeService employeeService;
+
+    private EmployeeService employeeService = ApplicationContextHolder.getBean(EmployeeServiceImpl.class);
 
     @Override
     public boolean isSatisfied(Object validatedObject, Object value,
@@ -26,8 +27,7 @@ public class UniqueEmplEmailCheck extends AbstractAnnotationCheck<UniqueEmplEmai
 
         Employee validate = (Employee) validatedObject;
         Employee empl = employeeService.getByEmail(value.toString());
-        String s = empl.getEmail();
-        if(!value.equals(s)){
+        if(empl.getId()==null){
             return true;
         } else if(empl.getId()==validate.getId()){
             return true;

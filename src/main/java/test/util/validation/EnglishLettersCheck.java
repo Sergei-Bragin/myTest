@@ -4,6 +4,7 @@ import net.sf.oval.Validator;
 import net.sf.oval.configuration.annotation.AbstractAnnotationCheck;
 import net.sf.oval.context.OValContext;
 import net.sf.oval.exception.OValException;
+import org.springframework.stereotype.Component;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -11,6 +12,7 @@ import java.util.regex.Pattern;
 /**
  * Created by on 11.04.16.
  */
+@Component
 public class EnglishLettersCheck extends AbstractAnnotationCheck<EnglishLetters> {
 
     private static final String NAME_PARENT = "^[a-zA-Z0-9_]+$";
