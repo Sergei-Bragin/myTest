@@ -20,11 +20,11 @@
         </tr>
         <c:forEach items="${empls}" var="empl">
             <tr>
-                <td><c:out value="${empl.id}" /></td>
-                <td><c:out value="${empl.name}" /></td>
-                <td><c:out value="${empl.email}" /></td>
-                <td><c:out value="${empl.date}" /></td>
-                <td><c:out value="${empl.salary}" /></td>
+                <td><c:out value="${empl.id}"/></td>
+                <td><c:out value="${empl.name}"/></td>
+                <td><c:out value="${empl.email}"/></td>
+                <td><c:out value="${empl.date}"/></td>
+                <td><c:out value="${empl.salary}"/></td>
                 <td>
                     <form method="post" action="/delEmpl">
                         <input type="hidden" name="id" value=${empl.id}>

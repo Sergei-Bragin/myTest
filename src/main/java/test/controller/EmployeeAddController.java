@@ -5,16 +5,12 @@ import org.springframework.stereotype.Component;
 import test.entity.Employee;
 import test.exception.ValidException;
 import test.service.EmployeeService;
-import test.service.impl.EmployeeServiceImpl;
 import test.util.ParseType;
-import test.util.validation.ValidatorOVAL;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Date;
-import java.sql.SQLException;
 import java.util.Map;
 
 /**
@@ -40,19 +36,19 @@ public class EmployeeAddController implements InternalController {
 
         try {
 
-            if (idEmpl.isEmpty()){
+            if (idEmpl.isEmpty()) {
                 employeeService.updateEmpl(employee);
-            }else{
+            } else {
                 employee.setId(ParseType.parseStringToInteger(idEmpl));
                 employeeService.updateEmpl(employee);
             }
             String url = "/showDepEmpl?id=" + depId;
             response.sendRedirect(url);
-        }catch (ValidException exception){
-            Map<String,String> map = exception.getMapError();
+        } catch (ValidException exception) {
+            Map<String, String> map = exception.getMapError();
             request.setAttribute("error", map);
             request.setAttribute("empl", employee);
-            request.getRequestDispatcher("WEB-INF/pages/empl/add.jsp").forward(request,response);
+            request.getRequestDispatcher("WEB-INF/pages/empl/add.jsp").forward(request, response);
         }
 
     }

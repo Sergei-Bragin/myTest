@@ -4,10 +4,7 @@ import net.sf.oval.ConstraintViolation;
 import net.sf.oval.Validator;
 import net.sf.oval.context.FieldContext;
 import net.sf.oval.context.OValContext;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import test.exception.ValidException;
-
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
@@ -27,14 +24,14 @@ public class ValidatorOVAL {
         this.validator = validator;
     }
 
-    public void valid(Object object) throws ValidException  {
+    public void valid(Object object) throws ValidException {
 
         List<ConstraintViolation> violations = validator.validate(object);
 
-        Map<String,String> map = new HashMap<>();
+        Map<String, String> map = new HashMap<>();
 
-        if(violations.size()>0){
-            for(ConstraintViolation constraintViolation : violations){
+        if (violations.size() > 0) {
+            for (ConstraintViolation constraintViolation : violations) {
                 OValContext context = constraintViolation.getContext();
                 if (context instanceof FieldContext) {
                     Field fieldContext = ((FieldContext) context).getField();

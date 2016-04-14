@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -8,13 +7,14 @@
             text-align: center;
             padding-top: 15%;
         }
+
         #izo img {
             vertical-align: middle;
         }
     </style>
 </head>
 <body>
-    <a href="/">Return home page!</a>
-        <div id="izo"><img src="/image/error.png"></div>
+<a href="/">Return home page!</a>
+<div id="izo"><img src="/image/error.png"></div>
 </body>
 </html>

@@ -22,7 +22,6 @@ import java.util.Map;
 @Repository
 public class EmplDAOImpl implements EmployeeDAO {
 
-
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
@@ -30,11 +29,10 @@ public class EmplDAOImpl implements EmployeeDAO {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-
     @Override
     public Employee getById(Integer id) {
         String query = "select * from empl where id=?";
-        try{
+        try {
             Employee employee = jdbcTemplate.queryForObject(query, new Object[]{id}, new RowMapper<Employee>() {
                 @Override
                 public Employee mapRow(ResultSet resultSet, int i) throws SQLException {
@@ -49,7 +47,7 @@ public class EmplDAOImpl implements EmployeeDAO {
                 }
             });
             return employee;
-        }catch (EmptyResultDataAccessException e){
+        } catch (EmptyResultDataAccessException e) {
             Employee employee = new Employee();
             employee.setDepId(id);
             return employee;
@@ -74,7 +72,7 @@ public class EmplDAOImpl implements EmployeeDAO {
                 }
             });
             return empl;
-        }catch (EmptyResultDataAccessException e){
+        } catch (EmptyResultDataAccessException e) {
             Employee employee = new Employee();
             employee.setEmail(email);
             return employee;
@@ -87,8 +85,8 @@ public class EmplDAOImpl implements EmployeeDAO {
         String query = "select * from empl";
         List<Employee> emplList = new ArrayList<>();
 
-        List<Map<String,Object>> empRows = jdbcTemplate.queryForList(query);
-        for (Map<String, Object> empRow : empRows){
+        List<Map<String, Object>> empRows = jdbcTemplate.queryForList(query);
+        for (Map<String, Object> empRow : empRows) {
             Employee employee = new Employee();
             employee.setDate(ParseType.parseStringToDate(String.valueOf(empRow.get("date"))));
             employee.setName(String.valueOf(empRow.get("name")));
@@ -105,28 +103,28 @@ public class EmplDAOImpl implements EmployeeDAO {
     public void updateEmpl(Employee empl) {
         String query;
         Object[] args;
-        if(empl.getId()!=null){
+        if (empl.getId() != null) {
             query = "update empl set name = ?, email = ?, date = ?, salary = ?, id_dep = ?  where id = ?";
-            args = new Object[]{empl.getName(), empl.getEmail(),empl.getDate(),empl.getSalary(),empl.getDepId(),empl.getId()};
-        }else{
+            args = new Object[]{empl.getName(), empl.getEmail(), empl.getDate(), empl.getSalary(), empl.getDepId(), empl.getId()};
+        } else {
             query = "insert into empl (name, email, date, salary, id_dep) values(?,?,?,?,?)";
-            args = new Object[]{empl.getName(), empl.getEmail(),empl.getDate(),empl.getSalary(),empl.getDepId()};
+            args = new Object[]{empl.getName(), empl.getEmail(), empl.getDate(), empl.getSalary(), empl.getDepId()};
         }
-        jdbcTemplate.update(query,args);
+        jdbcTemplate.update(query, args);
     }
 
     @Override
     public void delEmpl(Integer id) {
         String query = "delete from empl where id=?";
-        jdbcTemplate.update(query,id);
+        jdbcTemplate.update(query, id);
     }
 
     @Override
     public List<Employee> getEmplByDepId(Integer idDep) {
         List<Employee> emplList = getAll();
         List<Employee> employeeList = new ArrayList<>();
-        for(Employee employee : emplList){
-            if (employee.getDepId() == idDep){
+        for (Employee employee : emplList) {
+            if (employee.getDepId() == idDep) {
                 employeeList.add(employee);
             }
         }

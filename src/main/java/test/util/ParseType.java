@@ -9,7 +9,7 @@ import java.util.Date;
  */
 public class ParseType {
 
-    private  static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     public static Date parseStringToDate(String date) {
         Date fDate;
@@ -21,28 +21,26 @@ public class ParseType {
         return fDate;
     }
 
-    public static Double parseStringToDouble(String salary){
+    public static Double parseStringToDouble(String salary) {
 
         Double dSalary;
-        try{
-            dSalary  = Double.parseDouble(salary);
-        }
-        catch (NumberFormatException e){
+        try {
+            dSalary = Double.parseDouble(salary);
+        } catch (NumberFormatException e) {
             dSalary = null;
         }
 
-        return  dSalary;
+        return dSalary;
     }
 
     public static Integer parseStringToInteger(String id) {
 
         Integer integer;
-        try{
-            integer  = Integer.parseInt(id);
-        }
-        catch (NumberFormatException e){
+        try {
+            integer = Integer.parseInt(id);
+        } catch (NumberFormatException e) {
             integer = null;
         }
-        return  integer;
+        return integer;
     }
 }

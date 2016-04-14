@@ -19,13 +19,13 @@ public class EnglishLettersCheck extends AbstractAnnotationCheck<EnglishLetters>
 
     @Override
     public boolean isSatisfied(Object validatedObject, Object valueToValidate, OValContext context, Validator validator) throws OValException {
-        if(chekName(valueToValidate.toString())){
+        if (chekName(valueToValidate.toString())) {
             return true;
-        }else
+        } else
             return false;
     }
 
-    public static boolean chekName(String name){
+    public static boolean chekName(String name) {
         Pattern pattern = Pattern.compile(NAME_PARENT);
         Matcher matcher = pattern.matcher(name);
         return matcher.matches();

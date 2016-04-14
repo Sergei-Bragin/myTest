@@ -4,9 +4,7 @@ import net.sf.oval.Validator;
 import net.sf.oval.configuration.annotation.AbstractAnnotationCheck;
 import net.sf.oval.context.OValContext;
 import net.sf.oval.exception.OValException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.validation.annotation.Validated;
 import test.entity.Employee;
 import test.service.EmployeeService;
 import test.service.impl.EmployeeServiceImpl;
@@ -27,9 +25,9 @@ public class UniqueEmplEmailCheck extends AbstractAnnotationCheck<UniqueEmplEmai
 
         Employee validate = (Employee) validatedObject;
         Employee empl = employeeService.getByEmail(value.toString());
-        if(empl.getId()==null){
+        if (empl.getId() == null) {
             return true;
-        } else if(empl.getId()==validate.getId()){
+        } else if (empl.getId() == validate.getId()) {
             return true;
         }
 

@@ -1,5 +1,5 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -23,8 +23,8 @@
         <c:forEach items="${deps}" var="dep">
 
             <tr>
-                <td><c:out value="${dep.id}" /></td>
-                <td><c:out value="${dep.name}" /></td>
+                <td><c:out value="${dep.id}"/></td>
+                <td><c:out value="${dep.name}"/></td>
                 <td>
                     <form method="post" action="/delDep">
                         <input type="hidden" name="id" value=${dep.id}>
