@@ -4,7 +4,6 @@ import net.sf.oval.Validator;
 import net.sf.oval.configuration.annotation.AbstractAnnotationCheck;
 import net.sf.oval.context.OValContext;
 import net.sf.oval.exception.OValException;
-import org.springframework.stereotype.Component;
 import test.entity.Employee;
 import test.service.EmployeeService;
 import test.service.impl.EmployeeServiceImpl;
@@ -13,8 +12,7 @@ import test.service.impl.EmployeeServiceImpl;
 /**
  * Created by on 08.04.16.
  */
-
-public class UniqueEmplEmailCheck extends AbstractAnnotationCheck<UniqueEmplEmail> {
+class UniqueEmplEmailCheck extends AbstractAnnotationCheck<UniqueEmplEmail> {
 
     private EmployeeService employeeService = ApplicationContextHolder.getBean(EmployeeServiceImpl.class);
 
