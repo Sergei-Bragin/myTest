@@ -4,6 +4,7 @@ import net.sf.oval.ConstraintViolation;
 import net.sf.oval.Validator;
 import net.sf.oval.context.FieldContext;
 import net.sf.oval.context.OValContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import test.exception.ValidException;
 
 import java.lang.reflect.Field;

@@ -12,8 +12,7 @@ import test.service.impl.DepartmentServiceImpl;
 /**
  * Created by on 08.04.16.
  */
-
-class UniqueNameDepCheck extends AbstractAnnotationCheck<UniqueNameDep> {
+public class UniqueNameDepCheck extends AbstractAnnotationCheck<UniqueNameDep> {
 
     private DepartmentService departmentService = ApplicationContextHolder.getBean(DepartmentServiceImpl.class);
 
