@@ -13,11 +13,11 @@ import test.service.impl.EmployeeServiceImpl;
 /**
  * Created by on 08.04.16.
  */
-@Component
+
 public class UniqueEmplEmailCheck extends AbstractAnnotationCheck<UniqueEmplEmail> {
 
-
     private EmployeeService employeeService = ApplicationContextHolder.getBean(EmployeeServiceImpl.class);
+
 
     @Override
     public boolean isSatisfied(Object validatedObject, Object value,

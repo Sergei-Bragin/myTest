@@ -12,7 +12,6 @@ import java.util.regex.Pattern;
 /**
  * Created by on 11.04.16.
  */
-@Component
 public class EnglishLettersCheck extends AbstractAnnotationCheck<EnglishLetters> {
 
     private static final String NAME_PARENT = "^[a-zA-Z0-9_]+$";
