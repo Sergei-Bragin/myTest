@@ -21,6 +21,11 @@
         <param-value>classpath:spring/application-context.xml</param-value>
     </context-param>
 
+    <error-page>
+        <exception-type>java.lang.Exception</exception-type>
+        <location>/WEB-INF/pages/error/error.jsp</location>
+    </error-page>
+
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/</url-pattern>
@@ -40,6 +45,5 @@
         <servlet-name>default</servlet-name>
         <url-pattern>/js/*</url-pattern>
     </servlet-mapping>
-
 
 </web-app>

@@ -70,6 +70,12 @@ public class DepDAOImpl implements DepartmentDAO {
         }
     }
 
+    public boolean isExist(String name) {
+        String query = "select count(*) from dep where name=?";
+        Integer integer = jdbcTemplate.queryForObject(query, new Object[]{name}, Integer.class);
+        return integer > 0;
+    }
+
     @Override
     public List<Department> getAll() {
         String query = "select * from dep";
