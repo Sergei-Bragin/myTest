@@ -16,7 +16,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     @Override
     public Department getByName(String name) throws SQLException {
         Department dep = new Department();
-        try(Connection connection = MYSQLConnection.getConnection()) {
+        try (Connection connection = MYSQLConnection.getConnection()) {
             try (PreparedStatement preparedStatement = connection.prepareStatement("select * from dep where name=?")) {
                 preparedStatement.setString(1, name);
                 ResultSet rs = preparedStatement.executeQuery();
@@ -30,10 +30,11 @@ public class DepartmentDAOImpl implements DepartmentDAO {
         return dep;
     }
 
+    @Override
     public Department getById(Integer id) throws SQLException {
 
         Department dep = new Department();
-        try(Connection connection = MYSQLConnection.getConnection()) {
+        try (Connection connection = MYSQLConnection.getConnection()) {
             try (PreparedStatement preparedStatement = connection.prepareStatement("select * from dep where id=?")) {
                 preparedStatement.setInt(1, id);
                 ResultSet rs = preparedStatement.executeQuery();
@@ -47,10 +48,11 @@ public class DepartmentDAOImpl implements DepartmentDAO {
         return dep;
     }
 
+    @Override
     public List<Department> getAll() throws SQLException {
 
         List<Department> departments = new ArrayList<>();
-        try(Connection connection = MYSQLConnection.getConnection()) {
+        try (Connection connection = MYSQLConnection.getConnection()) {
             try (Statement statement = connection.createStatement()) {
                 ResultSet rs = statement.executeQuery("select * from dep");
                 while (rs.next()) {
@@ -65,35 +67,38 @@ public class DepartmentDAOImpl implements DepartmentDAO {
         return departments;
     }
 
+    @Override
     public void addDep(Department department) throws SQLException {
 
-        try(Connection connection = MYSQLConnection.getConnection()) {
+        try (Connection connection = MYSQLConnection.getConnection()) {
             try (PreparedStatement preparedStatement =
                          connection.prepareStatement("insert into dep(name,icon) values (?,?)")) {
                 preparedStatement.setString(1, department.getName());
-                preparedStatement.setBytes(2,department.getIcon());
+                preparedStatement.setBytes(2, department.getIcon());
                 preparedStatement.executeUpdate();
             }
         }
 
     }
 
+    @Override
     public void updateDep(Department department) throws SQLException {
 
-        try(Connection connection = MYSQLConnection.getConnection()) {
+        try (Connection connection = MYSQLConnection.getConnection()) {
             try (PreparedStatement preparedStatement = connection
                     .prepareStatement("update dep set name=?,icon=? where id=?")) {
                 preparedStatement.setString(1, department.getName());
-                preparedStatement.setBytes(2,department.getIcon());
+                preparedStatement.setBytes(2, department.getIcon());
                 preparedStatement.setInt(3, department.getId());
                 preparedStatement.executeUpdate();
             }
         }
     }
 
+    @Override
     public void delDep(Integer id) throws SQLException {
 
-        try(Connection connection = MYSQLConnection.getConnection()) {
+        try (Connection connection = MYSQLConnection.getConnection()) {
             try (PreparedStatement preparedStatement = connection
                     .prepareStatement("delete from dep where id=?")) {
                 preparedStatement.setInt(1, id);
