@@ -66,8 +66,9 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 
         try(Connection connection = MYSQLConnection.getConnection()) {
             try (PreparedStatement preparedStatement =
-                         connection.prepareStatement("insert into dep(name) values (?)")) {
+                         connection.prepareStatement("insert into dep(name,icon) values (?,?)")) {
                 preparedStatement.setString(1, department.getName());
+                preparedStatement.setBytes(2,department.getIcon());
                 preparedStatement.executeUpdate();
             }
         }
