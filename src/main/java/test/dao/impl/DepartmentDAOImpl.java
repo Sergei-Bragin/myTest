@@ -23,6 +23,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
                 if (rs.next()) {
                     dep.setId(rs.getInt("id"));
                     dep.setName(rs.getString("name"));
+                    dep.setIcon(rs.getBytes("icon"));
                 }
             }
         }
@@ -39,6 +40,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
                 if (rs.next()) {
                     dep.setId(rs.getInt("id"));
                     dep.setName(rs.getString("name"));
+                    dep.setIcon(rs.getBytes("icon"));
                 }
             }
         }
@@ -55,6 +57,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
                     Department dep = new Department();
                     dep.setId(rs.getInt("id"));
                     dep.setName(rs.getString("name"));
+                    dep.setIcon(rs.getBytes("icon"));
                     departments.add(dep);
                 }
             }
@@ -79,9 +82,10 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 
         try(Connection connection = MYSQLConnection.getConnection()) {
             try (PreparedStatement preparedStatement = connection
-                    .prepareStatement("update dep set name=? where id=?")) {
+                    .prepareStatement("update dep set name=?,icon=? where id=?")) {
                 preparedStatement.setString(1, department.getName());
-                preparedStatement.setInt(2, department.getId());
+                preparedStatement.setBytes(2,department.getIcon());
+                preparedStatement.setInt(3, department.getId());
                 preparedStatement.executeUpdate();
             }
         }
