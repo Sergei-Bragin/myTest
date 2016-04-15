@@ -22,7 +22,7 @@ public class ControllerFactory {
         controllerMap.put("/saveEmpl", new EmployeeAddController());
         controllerMap.put("/delEmpl", new EmployeeDelController());
         controllerMap.put("/error", new ErrorShowPage());
-        controllerMap.put("/imag", new ImagePage());
+        controllerMap.put("/image", new ImagePage());
 
 
     }

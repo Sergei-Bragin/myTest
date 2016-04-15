@@ -24,7 +24,7 @@
         <c:forEach items="${deps}" var="dep">
 
             <tr>
-                <td><img src="${icon}.pnj"></td>
+                <td><img src="/image+${dep.id}"></td>
                 <td><c:out value="${dep.id}"/></td>
                 <td><c:out value="${dep.name}"/></td>
                 <td>
