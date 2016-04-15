@@ -28,10 +28,6 @@ public class ImagePage implements InternalController {
             byte[] image = department.getIcon();
             response.setContentType("image/jpeg");
             response.getOutputStream().write(image);
-            /*OutputStream os = response.getOutputStream();
-            BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(os);
-            bufferedOutputStream.write(image, 0, image.length);
-            bufferedOutputStream.close();*/
         } catch (SQLException e) {
             response.sendRedirect("/error");
         }

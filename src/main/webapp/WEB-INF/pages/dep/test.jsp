@@ -11,7 +11,7 @@
 <div class="center">
 
     <table class="table hovered">
-        <tbody>
+
         <tr>
             <th></th>
             <th>Id</th>
@@ -23,7 +23,8 @@
 
         <c:forEach items="${deps}" var="dep">
             <tr>
-                <td><img src="/image.action?idImage=${dep.id}"></td>
+                <%--<img  src="image.do?idImage=${dep.id}"/>--%>
+                <td><img  src="/showImage?idImage=${dep.id}" /></td>
                 <td><c:out value="${dep.id}"/></td>
                 <td><c:out value="${dep.name}"/></td>
                 <td>
@@ -46,7 +47,7 @@
                 </td>
             </tr>
         </c:forEach>
-        </tbody>
+
     </table>
 
     <form method="get" action="/addDep">
