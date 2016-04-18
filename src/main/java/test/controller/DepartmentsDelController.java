@@ -23,7 +23,6 @@ public class DepartmentsDelController implements InternalController {
             Integer depId = Integer.parseInt(request.getParameter("id"));
             departmentService.delDep(depId);
             response.sendRedirect("/");
-
         }catch (SQLException e){
             response.sendRedirect("/error");
         }

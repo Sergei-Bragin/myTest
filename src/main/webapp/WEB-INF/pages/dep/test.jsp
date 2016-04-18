@@ -23,8 +23,11 @@
 
         <c:forEach items="${deps}" var="dep">
             <tr>
-                <%--<img  src="image.do?idImage=${dep.id}"/>--%>
-                <td><img  src="/showImage?idImage=${dep.id}" /></td>
+                <td>
+                    <div class="image-container rounded" style="width:81px; height:54px">
+                        <img src="/showImage?idImage=${dep.id}"/>
+                    </div>
+                </td>
                 <td><c:out value="${dep.id}"/></td>
                 <td><c:out value="${dep.name}"/></td>
                 <td>

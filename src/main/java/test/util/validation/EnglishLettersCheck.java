@@ -17,10 +17,7 @@ public class EnglishLettersCheck extends AbstractAnnotationCheck<EnglishLetters>
 
     @Override
     public boolean isSatisfied(Object validatedObject, Object valueToValidate, OValContext context, Validator validator) throws OValException {
-        if(chekName(valueToValidate.toString())){
-            return true;
-        }else
-            return false;
+            return chekName(valueToValidate.toString());
     }
 
     public static boolean chekName(String name){

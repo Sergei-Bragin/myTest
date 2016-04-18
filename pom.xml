@@ -63,8 +63,8 @@
       <artifactId>batik-css</artifactId>
       <version>1.7</version>
     </dependency>
-    <!--Upload file-->
 
+    <!--Upload file-->
     <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>

@@ -85,7 +85,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     public void updateDep(Department department) throws SQLException {
 
         try (Connection connection = MYSQLConnection.getConnection()) {
-            try (PreparedStatement preparedStatement = connection
+             try (PreparedStatement preparedStatement = connection
                     .prepareStatement("update dep set name=?,icon=? where id=?")) {
                 preparedStatement.setString(1, department.getName());
                 preparedStatement.setBytes(2, department.getIcon());
