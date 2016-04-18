@@ -53,7 +53,7 @@ public class DepDAOImpl implements DepartmentDAO {
 
     @Override
     public Department getByName(String name) {
-        String query = "select id, name from dep where name=?";
+        String query = "select * from dep where name=?";
         try {
             Department dep = jdbcTemplate.queryForObject(query, new Object[]{name}, new RowMapper<Department>() {
                 @Override

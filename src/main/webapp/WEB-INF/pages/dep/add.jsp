@@ -17,8 +17,9 @@
                value="<c:out value="${department.name}"/>"/>
         <span class="error">${error.get("name")}</span><br/>
 
-        <label>Icon</label><br/>
-        <input type="file" name="icon"><br/>
+         <label>Icon</label><br/>
+         <input type="file" name="icon" accept="image/*"><br/>
+
 
         <input class="button primary" type="submit" value="Submit"/>
         <input class="button primary" type="reset" value="Reset"/>

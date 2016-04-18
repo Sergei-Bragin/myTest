@@ -30,13 +30,13 @@ public class DepartmentAddController implements InternalController {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        if (ServletFileUpload.isMultipartContent(request)){
+        if (ServletFileUpload.isMultipartContent(request)) {
             Department department = new Department();
-            try{
+            try {
                 List<FileItem> list = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
-                for(FileItem item : list){
+                for (FileItem item : list) {
                     if (item.getFieldName().equals("id")) {
-                        String id = new String(item.get(),"UTF-8");
+                        String id = new String(item.get(), "UTF-8");
                         department.setId(ParseType.parseStringToInteger(id));
                     } else if (item.getFieldName().equals("name")) {
                         String name = new String(item.get(), "UTF-8");
@@ -45,19 +45,18 @@ public class DepartmentAddController implements InternalController {
                         department.setIcon(item.get());
                     }
                 }
-                if (department.getId()==null) {
+                if (department.getId() == null) {
                     departmentService.updateDep(department);
                 } else {
                     departmentService.updateDep(department);
                 }
                 response.sendRedirect("/");
-            }catch (ValidException exception) {
+            } catch (ValidException exception) {
                 Map<String, String> map = exception.getMapError();
                 request.setAttribute("error", map);
                 request.setAttribute("department", department);
                 request.getRequestDispatcher("WEB-INF/pages/dep/add.jsp").forward(request, response);
-            }
-            catch (Exception ex){
+            } catch (Exception ex) {
                 response.sendRedirect("/error");
             }
         }
