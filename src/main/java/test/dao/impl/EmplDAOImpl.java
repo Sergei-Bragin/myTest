@@ -49,7 +49,6 @@ public class EmplDAOImpl implements EmployeeDAO {
             return employee;
         } catch (EmptyResultDataAccessException e) {
             Employee employee = new Employee();
-            employee.setDepId(id);
             return employee;
         }
     }
@@ -74,7 +73,6 @@ public class EmplDAOImpl implements EmployeeDAO {
             return empl;
         } catch (EmptyResultDataAccessException e) {
             Employee employee = new Employee();
-            employee.setEmail(email);
             return employee;
         }
 

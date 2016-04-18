@@ -23,15 +23,16 @@
         <label>Department name</label><br/>
         <input class="input-control text" type="text" name="name" placeholder="Input you name here..."
                value="<c:out value="${department.name}"/>"/>
-        <span class="error">${error.get("name")}</span><br/>
+        <span class="error">${error.name}</span><br/>
 
         <%--<label>Department icon</label><br/>
               <input type="file" name="icon" accept="image/*"><br/>--%>
         <label>Department icon</label><br/>
         <div class="input-control file" data-role="input">
             <input class="input-control text" type="file" name="icon" accept="image/*"
-            placeholder="Input you image here" value="${icon}"/>
-        </div><br/>
+                   placeholder="Input you image here" value="${icon}"/>
+        </div>
+        <span class="error">${error.icon}</span><br/>
 
         <input class="button primary" type="submit" value="Submit"/>
         <input class="button primary" type="reset" value="Reset"/>

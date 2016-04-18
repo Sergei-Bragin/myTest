@@ -21,12 +21,15 @@ public class UniqueNameDepCheck extends AbstractAnnotationCheck<UniqueNameDep> {
 
         Department validate = (Department) validatedObject;
         Department dep = departmentService.getByName(value.toString());
-        if (dep.getId() == null) {
+        String s = dep.getName();
+        if(!value.equals(s)){
             return true;
-        } else if (dep.getId().intValue() == validate.getId()) {
+        }else if (validate.getId()==null){
+            return false;
+        }
+        else if(dep.getId().intValue()==validate.getId()){
             return true;
         }
-
         return false;
 
     }

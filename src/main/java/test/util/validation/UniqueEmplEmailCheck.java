@@ -22,12 +22,13 @@ public class UniqueEmplEmailCheck extends AbstractAnnotationCheck<UniqueEmplEmai
 
         Employee validate = (Employee) validatedObject;
         Employee empl = employeeService.getByEmail(value.toString());
-        if (empl.getId() == null) {
+        String s = empl.getEmail();
+        if(!value.equals(s)){
             return true;
-        } else if (empl.getId().intValue() == validate.getId()) {
+        }else if (validate.getId()==null){
+            return false;
+        }else if(empl.getId().intValue()==validate.getId()){
             return true;
-        }
-
-        return false;
+        }else return false;
     }
 }

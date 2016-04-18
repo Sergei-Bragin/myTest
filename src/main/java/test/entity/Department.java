@@ -4,6 +4,7 @@ import net.sf.oval.constraint.NotEmpty;
 import net.sf.oval.constraint.NotNull;
 import net.sf.oval.constraint.Size;
 import test.util.validation.EnglishLetters;
+import test.util.validation.ImageValid;
 import test.util.validation.UniqueNameDep;
 
 import java.io.Serializable;
@@ -23,6 +24,7 @@ public class Department implements Serializable {
     @EnglishLetters
     private String name;
 
+    //@ImageValid
     private byte[] icon;
 
     public byte[] getIcon() {
