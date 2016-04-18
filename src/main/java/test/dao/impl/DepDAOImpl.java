@@ -39,6 +39,7 @@ public class DepDAOImpl implements DepartmentDAO {
                     Department department = new Department();
                     department.setId(resultSet.getInt("id"));
                     department.setName(resultSet.getString("name"));
+                    department.setIcon(resultSet.getBytes("icon"));
                     return department;
                 }
             });
@@ -60,6 +61,7 @@ public class DepDAOImpl implements DepartmentDAO {
                     Department dep = new Department();
                     dep.setName(resultSet.getString("name"));
                     dep.setId(resultSet.getInt("id"));
+                    dep.setIcon(resultSet.getBytes("icon"));
                     return dep;
                 }
             });
@@ -87,6 +89,7 @@ public class DepDAOImpl implements DepartmentDAO {
             Department dep = new Department();
             dep.setId(ParseType.parseStringToInteger(String.valueOf(depRow.get("id"))));
             dep.setName(String.valueOf(depRow.get("name")));
+            dep.setIcon((byte[]) depRow.get("icon"));
             depList.add(dep);
         }
         return depList;
@@ -97,11 +100,11 @@ public class DepDAOImpl implements DepartmentDAO {
         String query;
         Object[] args;
         if (department.getId() != null) {
-            query = "update dep set name=? where id=?";
-            args = new Object[]{department.getName(), department.getId()};
+            query = "update dep set name=?, icon=? where id=?";
+            args = new Object[]{department.getName(), department.getIcon(), department.getId()};
         } else {
-            query = "insert into dep (name) value (?)";
-            args = new Object[]{department.getName()};
+            query = "insert into dep (name, icon) value (?,?)";
+            args = new Object[]{department.getName(), department.getIcon()};
         }
         jdbcTemplate.update(query, args);
     }
