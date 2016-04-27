@@ -1,5 +1,7 @@
 package test.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.gson.annotations.Expose;
 import net.sf.oval.constraint.NotEmpty;
 import net.sf.oval.constraint.NotNull;
 import net.sf.oval.constraint.Size;
@@ -15,6 +17,7 @@ import java.io.Serializable;
 
 public class Department implements Serializable {
 
+    @Expose
     private Integer id;
 
     @NotNull
@@ -22,10 +25,14 @@ public class Department implements Serializable {
     @NotEmpty(message = "Name can't be empty!")
     @UniqueNameDep
     @EnglishLetters
+    @Expose
     private String name;
 
     //@ImageValid
     private byte[] icon;
+
+    public Department() {
+    }
 
     public byte[] getIcon() {
         return icon;
@@ -33,9 +40,6 @@ public class Department implements Serializable {
 
     public void setIcon(byte[] icon) {
         this.icon = icon;
-    }
-
-    public Department() {
     }
 
     public Integer getId() {
