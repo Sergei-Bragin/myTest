@@ -34,7 +34,7 @@
                 <td>
                     <form method="post" action="/delDep">
                         <input type="hidden" name="id" value=${dep.id}>
-                        <button class="button  primary" type="submit">Delete</button>
+                        <button class="button  primary"  type="submit">Delete</button>
                     </form>
                 </td>
                 <td>
