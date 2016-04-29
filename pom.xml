@@ -15,9 +15,6 @@
     <spring.version>4.2.1.RELEASE</spring.version>
     <spring.data.jpa.version>1.8.0.RELEASE</spring.data.jpa.version>
     <version.jackson>1.9.13</version.jackson>
-    <!-- jackson -->
-    <jackson.version>2.5.2</jackson.version>
-    <jackson.mapper.version>1.9.13</jackson.mapper.version>
   </properties>
 
   <dependencies>
