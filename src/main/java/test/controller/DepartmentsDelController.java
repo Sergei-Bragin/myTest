@@ -2,6 +2,7 @@ package test.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.ResponseBody;
 import test.service.DepartmentService;
 
 import javax.servlet.ServletException;

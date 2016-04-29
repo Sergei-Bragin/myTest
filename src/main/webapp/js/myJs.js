@@ -1,9 +1,9 @@
 $(document).ready(function () {
-    showList();
+    showListDepartments();
 });
 
 /*function -> draw department table*/
-function showAllDepartment(dep) {
+function drawTableDepartment(dep) {
 
     $('#test').children().detach();
     var div = $('<div/>').appendTo($('#test'));
@@ -12,31 +12,33 @@ function showAllDepartment(dep) {
     /*Table body*/
     for (var i = 0; i < dep.length; i++) {
         var department = dep[i];
-        $('<tr/>')
+        $('<tr onclick="buttonHandler(event,this)" data-id='+department.id+'/>')
             .append($('<td>')
                 .append($('<div class="image-container rounded" style="width:81px; height:54px" />')
                     .append($('<img/>').attr({src: "/showDepImage?idImage=" + department.id}))))
             .append($('<td>').text(department.id))
             .append($('<td>').text(department.name))
             .append($('<td>')
-                .append($('<button class="button  primary">Delete</button>')))
+                .append($('<button class="button  primary" id="btn_del"/>').text("Delete")))
             .append($('<td>')
-                .append($('<button class="button  primary">Update</button>')))
+                .append($('<button class="button  primary" id="btn_upd"/>').text("Update")))
             .append($('<td>')
-                .append($('<button class="button  primary">List Employee</button>')))
+                .append($('<button class="button  primary" id="bnt_list_empl"/>').text("List Employee")))
             .appendTo(table);
     }
     /*Add button*/
-    $('<button class="button primary block-shadow-success text-shadow" onclick="addNewDep()"/>').text("+Add dep").appendTo(table);
+    $('<button class="button primary block-shadow-success text-shadow" onclick="addNewDepartments()"/>').text("+Add dep").appendTo(table);
 }
+
 /*function -> show dep table*/
-function showList() {
+function showListDepartments() {
     $.getJSON('/showAllDep', function (dep) {
-        showAllDepartment(dep);
+        drawTableDepartment(dep);
     });
 }
 
-function addNewDep(id) {
+/*draw form add dep*/
+function addNewDepartments(id) {
 
     $('#test').children().detach();
 
@@ -51,76 +53,55 @@ function addNewDep(id) {
         .append($('<input type="hidden" name="id"/>').val(id)).append($('<br/>'))
         .append($('<button class="button primary" onclick="sendDepForController()"/>').text("Add dep"))
         .appendTo(div);
-    /*Button*/
-    /*$('<button class="button primary" id="addNewDepartment"/>').text("Add department").appendTo(form);*/
-
-
-
-    /*var formData = document.forms.namedItem('saveDep');
-    form.addEventListener('submit',function (ev) {
-        oData = new FormData(formData);
-
-        oData.append("CustomField", "This is some extra data");
-        var oReq = new XMLHttpRequest();
-        oReq.open("POST","/saveDep",true);
-        oReq.onload = function (oEvent) {
-            if(oReq.status==200){
-                showList();
-            }else {
-                alert("FUUK");
-            }
-        };
-        oReq.send(oData);
-        ev.preventDefault();
-    }, false);*/
-
 
 }
+
+/*send department data to server*/
 function sendDepForController() {
+    /*input file to form*/
     var fd = new FormData(document.querySelector("form"));
+
     $.ajax({
-        url : '/saveDep',
-        type : 'POST',
+        url: '/saveDep',
+        type: 'POST',
         data: fd,
         processData: false,
-        contentType: false
+        contentType: false,
+        success: function () {
+            showListDepartments();
+        }
     });
 }
 
 function deleteDep(id) {
-
+    $.ajax({
+        contentType: "application/json",
+        url: '/delDep',
+        type: 'POST',
+        dataType: 'json',
+        timeout: 100000,
+        data: {
+         id:id   
+        },
+        success: function () {
+            showListDepartments();
+        }
+    })
 }
+
 function updateDep(id) {
 
 }
 
-/*var div = $('<div/>').appendTo($('#test'));
+function buttonHandler(event, value) {
+    var id = $(value).data("id");
 
- var table = $('<table class="table hovered"/>').appendTo(div)
- .append($('<tr/>')
- .append($('<th/>').html(''))
- .append($('<th/>').html('ID'))
- .append($('<th/>').html('Name'))
- .append($('<th/>').html(''))
- .append($('<th/>').html(''))
- .append($('<th/>').html(''))
- );
+    var action = event.target.id;
+    if ("btn_del" === action) {
+        deleteDep(id);
+    } else if ("btn_upd" === action) {
+        addNewDepartments(id);
+    }
 
- for (var i = 0; i < dep.length; i++) {
- var department = dep[i];
- $('<tr/>')
- .append($('<td>')
- .append($('<div class="image-container rounded" style="width:81px; height:54px" />')
- .append($('<img/>').attr({
- src :  "/showDepImage?idImage="+department.id
- }))))
- .append($('<td>').text(department.id))
- .append($('<td>').text(department.name))
- .append($('<td>')
- .append($('<button class="button  primary"  type="submit">Delete</button>')))
- .append($('<td>')
- .append($('<button class="button  primary"  type="submit">Update</button>')))
- .append($('<td>')
- .append($('<button class="button  primary"  type="submit">List Employee</button>')))
- .appendTo(table);
- }*/
+}
+
