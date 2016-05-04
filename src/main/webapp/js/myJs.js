@@ -13,7 +13,8 @@ function drawTableDepartment(dep) {
     /*Table body*/
     for (var i = 0; i < dep.length; i++) {
         var department = dep[i];
-        $('<tr onclick="buttonHandler(event,this)" data-id=' + department.id + '/>')
+        var jsonDep = JSON.stringify(department);
+        $('<tr onclick="buttonHandlerDep(event,this)" data-dep=' + jsonDep + '/>')
             .append($('<td>')
                 .append($('<div class="image-container rounded" style="width:81px; height:54px" />')
                     .append($('<img/>').attr({src: "/showDepImage?idImage=" + department.id}))))
@@ -42,7 +43,8 @@ function drawTableEmpl(data) {
     /*Table body*/
     for (var i = 0; i < data.length; i++) {
         var empl = data[i];
-        $('<tr onclick="buttonHandler(event,this)" data-id=' + empl.id + ' data-depId=' + empl.depId + '/>')
+        var jsonEmpl = JSON.stringify(empl);
+        $('<tr onclick="buttonHandlerEmpl(event,this)" data-empl=' + jsonEmpl + '/>')
             .append($('<td/>').text(empl.id))
             .append($('<td/>').text(empl.name))
             .append($('<td/>').text(empl.email))
@@ -68,7 +70,7 @@ function showListDepartments() {
 }
 
 /*draw form add dep*/
-function addNewDepartments(id) {
+function addNewDepartments(dep) {
 
     $('#test').children().detach();
 
@@ -76,18 +78,21 @@ function addNewDepartments(id) {
     /*Form*/
     var form = $('<form enctype="multipart/form-data" method="post" name="saveDep"/>')
         .append($('<label/>').text("Name Department").append($('<br/>')))
-        .append($('<input class="input-control text" type="text" name="name" placeholder="input you name"/>')).append($('<br/>'))
+        .append($('<input class="input-control text" type="text" name="name" placeholder="input you name"/>').val(dep.name.toString())).append($('<br/>'))
         .append($('<label/>').text("Icon path").append($('<br/>')))
         .append($('<div class="input-control file" data-role="input"/>')
             .append($('<input class="input-control text" type="file" name="icon" accept="image/*"/>').append($('<br/>'))))
-        .append($('<input type="hidden" name="id"/>').val(id)).append($('<br/>'))
+        .append($('<input type="hidden" name="id"/>').val(dep.id.toString())).append($('<br/>'))
         .append($('<button class="button primary" onclick="sendDepForController()"/>').text("Add dep"))
         .appendTo(div);
 
 }
 
-function addNewEmpl() {
+function addNewEmpl(empl) {
 
+    $('#test').children().detach();
+
+    var div = $('<div/>').appendTo($('#test'));
 }
 
 /*send department data to server*/
@@ -107,7 +112,8 @@ function sendDepForController() {
 }
 
 /*Delete department by id*/
-function deleteDep(id) {
+function deleteDep(dep) {
+    var id = dep.id;
     $.ajax({
         url: '/delDep',
         type: 'POST',
@@ -118,7 +124,22 @@ function deleteDep(id) {
     });
 }
 
-function showListEmpl(id) {
+function deleteEmp(emp) {
+    var id = emp.id;
+    var dep = {id: emp.depId.toString()}
+    $.ajax({
+        url: '/delEmpl',
+        type: 'POST',
+        data: {id: id},
+        success: function () {
+            showListEmpl(dep)
+        }
+    });
+
+}
+
+function showListEmpl(dep) {
+    var id = dep.id;
     $.ajax({
         url: '/showDepEmpl',
         type: 'GET',
@@ -131,16 +152,27 @@ function showListEmpl(id) {
 }
 
 
-function buttonHandler(event, value) {
-    var id = $(value).data("id");
+function buttonHandlerDep(event, value) {
+    var dep = $(value).data("dep");
+
     var action = event.target.id;
     if ("btn_del" === action) {
-        deleteDep(id);
+        deleteDep(dep);
     } else if ("btn_upd" === action) {
-        addNewDepartments(id);
+        addNewDepartments(dep);
     } else if ("bnt_list_empl") {
-        showListEmpl(id);
+        showListEmpl(dep);
     }
+}
 
+function buttonHandlerEmpl(event, value) {
+    var emp = $(value).data("empl");
+
+    var action = event.target.id;
+    if ("btn_del" === action) {
+        deleteEmp(emp);
+    } else if ("btn_upd" === action) {
+        addNewEmpl(emp)
+    }
 }
 

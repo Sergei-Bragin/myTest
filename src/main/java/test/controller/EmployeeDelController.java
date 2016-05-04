@@ -22,10 +22,8 @@ public class EmployeeDelController implements InternalController {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         Integer id = Integer.parseInt((request.getParameter("id")));
-        Integer depId = Integer.parseInt((request.getParameter("depId")));
         employeeService.delEmpl(id);
-        String url = "/showDepEmpl?id=" + depId;
-        response.sendRedirect(url);
+        response.setStatus(HttpServletResponse.SC_OK);
 
     }
 }
