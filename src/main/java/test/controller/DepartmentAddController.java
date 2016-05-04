@@ -50,7 +50,7 @@ public class DepartmentAddController implements InternalController {
                 } else {
                     departmentService.updateDep(department);
                 }
-                response.sendRedirect("/");
+               // response.sendRedirect("/");
             } catch (ValidException exception) {
                 Map<String, String> map = exception.getMapError();
                 request.setAttribute("error", map);

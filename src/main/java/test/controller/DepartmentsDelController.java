@@ -24,7 +24,12 @@ public class DepartmentsDelController implements InternalController {
 
         Integer depId = Integer.parseInt(request.getParameter("id"));
         departmentService.delDep(depId);
-        response.sendRedirect("/");
+
+        response.setStatus(HttpServletResponse.SC_OK);
+
+//        response.setContentType("application/json");
+//        response.getWriter().write("true");
+
 
     }
 }
