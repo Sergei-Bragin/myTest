@@ -72,17 +72,22 @@ function showListDepartments() {
 /*draw form add dep*/
 function addNewDepartments(dep) {
 
-    $('#test').children().detach();
+    $('#test').children().detach()
+
+    if(dep != null) {
+        var id = dep.id.toString();
+        var name = dep.name.toString();
+    }
 
     var div = $('<div/>').appendTo($('#test'));
     /*Form*/
     var form = $('<form enctype="multipart/form-data" method="post" name="saveDep"/>')
         .append($('<label/>').text("Name Department").append($('<br/>')))
-        .append($('<input class="input-control text" type="text" name="name" placeholder="input you name"/>').val(dep.name.toString())).append($('<br/>'))
+        .append($('<input class="input-control text" type="text" name="name" placeholder="input you name"/>').val(name)).append($('<br/>'))
         .append($('<label/>').text("Icon path").append($('<br/>')))
         .append($('<div class="input-control file" data-role="input"/>')
             .append($('<input class="input-control text" type="file" name="icon" accept="image/*"/>').append($('<br/>'))))
-        .append($('<input type="hidden" name="id"/>').val(dep.id.toString())).append($('<br/>'))
+        .append($('<input type="hidden" name="id"/>').val(id)).append($('<br/>'))
         .append($('<button class="button primary" onclick="sendDepForController()"/>').text("Add dep"))
         .appendTo(div);
 
