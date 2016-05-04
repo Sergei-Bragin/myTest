@@ -131,7 +131,7 @@ function deleteDep(dep) {
 
 function deleteEmp(emp) {
     var id = emp.id;
-    var dep = {id: emp.depId.toString()}
+    var dep = {id: emp.depId}
     $.ajax({
         url: '/delEmpl',
         type: 'POST',
