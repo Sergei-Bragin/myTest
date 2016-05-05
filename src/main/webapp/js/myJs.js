@@ -35,11 +35,8 @@ function drawTableDepartment(dep) {
 /*function -> Draw Empl table*/
 function drawTableEmpl(data, id) {
     $('#test').children().detach();
-    var emploee = {
-        depId: id
-    }
-    
-    var div = $('<div/>').appendTo($('#test'));
+
+    var div = $('<div onclick="addButtonEmplHandler(event,this)"   data-id=' + id + '/>').appendTo($('#test'));
     /*Table head*/
     var table = $('<table class="table hovered"/>').appendTo(div).html("<tr><th>ID</th><th>Name</th><th>Email</th><th>Date</th><th>Salary</th><th></th><th></th></tr>");
     /*Table body*/
@@ -58,8 +55,8 @@ function drawTableEmpl(data, id) {
                 .append($('<button class="button primary" id="btn_upd"/>').text("Update")))
             .appendTo(table);
     }
-    $('<button class="button primary " onclick="addNewEmpl()"/>').text("+Add Empl").appendTo(div);
-    $('<button class="button primary " onclick="showListDepartments()"/>').text("Return").appendTo(div);
+    $('<button class="button primary "  id = "addNewEmployee"/>').text("+Add Empl").appendTo(div);
+    $('<button class="button primary "  id = "redirectByDep""/>').text("Return").appendTo(div);
 
 
 }
@@ -140,8 +137,8 @@ function sendEmpForController() {
     var dep_id = $('#depId').val();
     var id = $('#id').val();
     var name = $('#name').val();
-    var email= $('#email').val();
-    var date =$('#date').val();
+    var email = $('#email').val();
+    var date = $('#date').val();
     var salary = $('#salary').val();
     var dep = {id: dep_id};
     $.ajax({
@@ -216,13 +213,25 @@ function buttonHandlerDep(event, value) {
 }
 
 function buttonHandlerEmpl(event, value) {
-    var emp = $(value).data("empls")
-
+    var emp = $(value).data("empls");
+    
     var action = event.target.id;
     if ("btn_del" === action) {
         deleteEmp(emp);
     } else if ("btn_upd" === action) {
         addNewEmpl(emp);
+    }
+}
+
+function addButtonEmplHandler(event, value) {
+    var empl = {
+        depId: $(value).data("id")
+    };
+    var action = event.target.id;
+    if ("addNewEmployee" === action) {
+        addNewEmpl(empl);
+    } else if ("redirectByDep" === action) {
+        showListDepartments()
     }
 }
 
