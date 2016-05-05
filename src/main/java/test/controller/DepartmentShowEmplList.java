@@ -1,6 +1,7 @@
 package test.controller;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import test.entity.Employee;
@@ -27,28 +28,15 @@ public class DepartmentShowEmplList implements InternalController {
 
         if(depId != null){
             List <Employee> employees = employeeService.getEmplByDepId(depId);
-            String json = new Gson().toJson(employees);
+
+            Gson gson = new GsonBuilder().setDateFormat("mm-dd-yyyy").create();
+            String json = gson.toJson(employees);
+
             response.setStatus(HttpServletResponse.SC_OK);
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write(json);
          }
-
-
-        /*if (id != null) {
-            Integer depId = ParseType.parseStringToInteger(id);
-            List<Employee> employees = employeeService.getEmplByDepId(Integer.valueOf(depId));
-            if (employees != null) {
-                request.setAttribute("id_dep", depId);
-                request.setAttribute("empls", employees);
-            }
-        }
-        request.getRequestDispatcher("WEB-INF/pages/empl/showEmp.jsp").forward(request, response);
-
-
-        Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
-        String json = gson.toJson(departmentService.getAll());        */
-
 
     }
 

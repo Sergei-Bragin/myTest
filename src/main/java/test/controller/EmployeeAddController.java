@@ -30,9 +30,9 @@ public class EmployeeAddController implements InternalController {
         employee.setEmail(request.getParameter("email"));
         employee.setSalary(ParseType.parseStringToDouble(request.getParameter("salary")));
         employee.setDate(ParseType.parseStringToDate(request.getParameter("date")));
-        Integer depId = ParseType.parseStringToInteger(request.getParameter("idDep"));
+        Integer depId = ParseType.parseStringToInteger(request.getParameter("depId"));
         employee.setDepId(depId);
-        String idEmpl = request.getParameter("idEmp");
+        String idEmpl = request.getParameter("id");
 
         try {
 
@@ -42,8 +42,7 @@ public class EmployeeAddController implements InternalController {
                 employee.setId(ParseType.parseStringToInteger(idEmpl));
                 employeeService.updateEmpl(employee);
             }
-            String url = "/showDepEmpl?id=" + depId;
-            response.sendRedirect(url);
+
         } catch (ValidException exception) {
             Map<String, String> map = exception.getMapError();
             request.setAttribute("error", map);
