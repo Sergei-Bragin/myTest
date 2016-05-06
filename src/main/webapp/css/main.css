@@ -5,6 +5,9 @@
     margin: auto;
     border: none;
 }
+.error{
+    color:red;
+}
 span.error{
     color:red;
 }

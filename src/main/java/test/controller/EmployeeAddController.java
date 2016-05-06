@@ -42,7 +42,7 @@ public class EmployeeAddController implements InternalController {
                 employee.setId(ParseType.parseStringToInteger(idEmpl));
                 employeeService.updateEmpl(employee);
             }
-
+            response.setStatus(HttpServletResponse.SC_OK);
         } catch (ValidException exception) {
             Map<String, String> map = exception.getMapError();
             request.setAttribute("error", map);

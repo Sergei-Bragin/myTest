@@ -29,7 +29,7 @@ public class DepartmentShowEmplList implements InternalController {
         if(depId != null){
             List <Employee> employees = employeeService.getEmplByDepId(depId);
 
-            Gson gson = new GsonBuilder().setDateFormat("mm-dd-yyyy").create();
+            Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
             String json = gson.toJson(employees);
 
             response.setStatus(HttpServletResponse.SC_OK);

@@ -1,6 +1,10 @@
 $(document).ready(function () {
     showListDepartments();
+
 });
+/*//////////////////////////////////////////////////*/
+
+/*Table form */
 
 /*function -> draw department table*/
 function drawTableDepartment(dep) {
@@ -29,7 +33,7 @@ function drawTableDepartment(dep) {
             .appendTo(table);
     }
     /*Add button*/
-    $('<button class="button primary block-shadow-success text-shadow" onclick="addNewDepartments()"/>').text("+Add dep").appendTo(table);
+    $('<button class="button primary block-shadow-success text-shadow"  onclick="addNewDepartments()"/>').text("+Add dep").appendTo(table);
 }
 
 /*function -> Draw Empl table*/
@@ -38,7 +42,8 @@ function drawTableEmpl(data, id) {
 
     var div = $('<div onclick="addButtonEmplHandler(event,this)"   data-id=' + id + '/>').appendTo($('#test'));
     /*Table head*/
-    var table = $('<table class="table hovered"/>').appendTo(div).html("<tr><th>ID</th><th>Name</th><th>Email</th><th>Date</th><th>Salary</th><th></th><th></th></tr>");
+    var table = $('<table class="table hovered"/>').appendTo(div)
+        .html("<tr><th>ID</th><th>Name</th><th>Email</th><th>Date</th><th>Salary</th><th></th><th></th></tr>");
     /*Table body*/
     for (var i = 0; i < data.length; i++) {
         var emp = data[i];
@@ -60,6 +65,9 @@ function drawTableEmpl(data, id) {
 
 
 }
+/*//////////////////////////////////////////////////*/
+
+/*Dialog forms */
 
 
 /*draw form add dep*/
@@ -68,28 +76,27 @@ function addNewDepartments(dep) {
     $('#test').children().detach()
     var div = $('<div/>').appendTo($('#test'));
     /*Form*/
-    var form = $('<form enctype="multipart/form-data" method="post" name="saveDep"/>')
+    var form = $('<form enctype="multipart/form-data" id="depForm"/>')
         .append($('<label/>').text("Name Department").append($('<br/>')))
         .append($('<input class="input-control text" type="text" name="name" placeholder="input you name"/>')
             .val(dep != null ? dep.name : "")).append($('<br/>'))
-        .append($('<label/>').text("Icon path").append($('<br/>')))
+        .append($('<label/>').text("Icon path")).append($('<br/>'))
         .append($('<div class="input-control file" data-role="input"/>')
-            .append($('<input class="input-control text" type="file" name="icon" accept="image/*"/>').append($('<br/>'))))
+            .append($('<input class="input-control text" type="file" name="icon" accept="image/*"/>'))).append($('<br/>'))
         .append($('<input type="hidden" name="id"/>')
             .val(dep != null ? dep.id : "")).append($('<br/>'))
-        .append($('<button class="button primary" onclick="sendDepForController()"/>').text("Add dep"))
+        .append($('<input class="button primary" type="submit"/>').text("Add dep"))
         .appendTo(div);
 
-
+    departmentFormValidate();
 }
-
+/*draw form add empl*/
 function addNewEmpl(emp) {
 
     $('#test').children().detach();
     var div = $('<div/>').appendTo($('#test'));
 
-
-    var form = $('<form id="empForm" method="post"/>')
+    $('<form id="empForm"/>')
         .append($('<input type="hidden" id="id" name="id"/>').val(emp != null ? emp.id : ""))
         .append($('<label/>').text("Name Employee")).append('<br/>')
         .append($('<input class="input-control text" type="text" id="name" name="name"/>')
@@ -104,10 +111,14 @@ function addNewEmpl(emp) {
         .append($('<input class="input-control text" type="text" id="salary" name="salary"/>')
             .val(emp != null ? emp.salary : "")).append($('<br/>'))
         .append($('<input type="hidden" id="depId" name="depId"/>').val(emp != null ? emp.depId : ""))
-        .append($('<button class="button primary" onclick="sendEmpForController()"/>').text("Add employee"))
+        .append($('<button class="button primary" type="submit" "/>').text("Add employee"))
         .appendTo(div);
 
+    emplFormValidate();
+
 }
+/*//////////////////////////////////////////////////*/
+/*AJAX request by server*/
 
 /*function -> show dep table*/
 function showListDepartments() {
@@ -115,7 +126,6 @@ function showListDepartments() {
         drawTableDepartment(dep);
     });
 }
-
 
 /*send department data to server*/
 function sendDepForController() {
@@ -132,7 +142,7 @@ function sendDepForController() {
         }
     });
 }
-
+/*send employee data to server*/
 function sendEmpForController() {
     var dep_id = $('#depId').val();
     var id = $('#id').val();
@@ -171,6 +181,7 @@ function deleteDep(dep) {
     });
 }
 
+/*delete empl by id*/
 function deleteEmp(emp) {
     var id = emp.id;
     var dep = {id: emp.depId}
@@ -185,6 +196,7 @@ function deleteEmp(emp) {
 
 }
 
+/*show list empls by dep id*/
 function showListEmpl(dep) {
     var id = dep.id;
     $.ajax({
@@ -197,8 +209,10 @@ function showListEmpl(dep) {
         }
     });
 }
+/*//////////////////////////////////////////////////*/
 
 
+/*Button handler event*/
 function buttonHandlerDep(event, value) {
     var dep = $(value).data("dep");
 
@@ -214,7 +228,7 @@ function buttonHandlerDep(event, value) {
 
 function buttonHandlerEmpl(event, value) {
     var emp = $(value).data("empls");
-    
+
     var action = event.target.id;
     if ("btn_del" === action) {
         deleteEmp(emp);
@@ -234,4 +248,48 @@ function addButtonEmplHandler(event, value) {
         showListDepartments()
     }
 }
+/*///////////////////////////////////////////////////////*/
 
+/*Validation Rulse*/
+
+/*Valid add dep form*/
+function departmentFormValidate() {
+    $('#depForm').validate({
+        rules: {
+            name: {
+                required: true,
+                minlength: 3,
+                maxlength: 16
+            }
+        },
+        submitHandler: function () {
+            sendDepForController()
+        }
+    });
+}
+/*Valid add empl form*/
+function emplFormValidate() {
+    $('#empForm').validate({
+        rules: {
+            name: {
+                required: true,
+                minlength: 2,
+                maxlength: 16
+            },
+            email: {
+                required: true,
+                email: true,
+            },
+            salary: {
+                required: true,
+            },
+            date: {
+                required: true,
+            }
+        },
+        submitHandler: function () {
+            sendEmpForController()
+        }
+    });
+}
+    
