@@ -78,12 +78,12 @@ function addNewDepartments(dep) {
     /*Form*/
     var form = $('<form enctype="multipart/form-data" id="depForm"/>')
         .append($('<label/>').text("Name Department").append($('<br/>')))
-        .append($('<input class="input-control text" type="text" name="name" placeholder="input you name"/>')
+        .append($('<input class="input-control text" type="text" id="name" name="name" placeholder="input you name"/>')
             .val(dep != null ? dep.name : "")).append($('<br/>'))
         .append($('<label/>').text("Icon path")).append($('<br/>'))
         .append($('<div class="input-control file" data-role="input"/>')
             .append($('<input class="input-control text" type="file" name="icon" accept="image/*"/>'))).append($('<br/>'))
-        .append($('<input type="hidden" name="id"/>')
+        .append($('<input type="hidden" id="id" name="id"/>')
             .val(dep != null ? dep.id : "")).append($('<br/>'))
         .append($('<input class="button primary" type="submit"/>').text("Add dep"))
         .appendTo(div);
@@ -259,7 +259,21 @@ function departmentFormValidate() {
             name: {
                 required: true,
                 minlength: 3,
-                maxlength: 16
+                maxlength: 16,
+                remote: {
+                    url: "/unicDepName",
+                    type: "POST",
+                    data: {
+                        id: function() {
+                            return $( "#id" ).val();
+                        }
+                    }
+                }
+            }
+        },
+        messages: {
+            name: {
+                remote: "Name already in use!"
             }
         },
         submitHandler: function () {
@@ -279,9 +293,14 @@ function emplFormValidate() {
             email: {
                 required: true,
                 email: true,
+                remote: {
+                    url: "/unicEmplEmail",
+                    type: "post"
+                }
             },
             salary: {
                 required: true,
+                digits: true,
             },
             date: {
                 required: true,
