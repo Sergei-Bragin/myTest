@@ -22,22 +22,21 @@ public class DepartmentUnicNameController implements InternalController {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        //Integer id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
-        String id = request.getParameter("id");
-        Integer id1 = null      ;
-        if (!id.equals("")) {
-            id1 = Integer.parseInt(id);
+        String value = request.getParameter("id");
+        Integer id = null      ;
+        if (!value.equals("")) {
+            id = Integer.parseInt(value);
         }
+
         Department dep = departmentService.getByName(name);
 
-        if (dep.getName() == null) {
-            response.getWriter().write("true");
-        } else if (dep.getId().intValue() == id1) {
-            response.getWriter().write("true");
-        } else {
-            response.getWriter().write("false");
-        }
-
+        if(name.equals(dep.getName())){
+            if(id == null){
+                response.getWriter().write("false");
+            }else if(id != dep.getId().intValue()){
+                response.getWriter().write("false");
+            } else response.getWriter().write("true");
+        } else response.getWriter().write("true");
     }
 }
