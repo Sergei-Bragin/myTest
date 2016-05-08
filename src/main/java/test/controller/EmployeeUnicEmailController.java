@@ -22,12 +22,21 @@ public class EmployeeUnicEmailController implements InternalController {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("email");
+        String value = request.getParameter("id");
+        Integer id = null;
+        if(!value.equals("")){
+            id=Integer.parseInt(value);
+        }
+
         Employee emp = employeeService.getByEmail(email);
 
-        if(emp.getName() == null){
-            response.getWriter().write("true");
-        }else{
-            response.getWriter().write("false");
-        }
+        if(email.equals(emp.getEmail())){
+            if(id==null){
+                response.getWriter().write("false");
+            }else if (id != emp.getId().intValue()){
+                response.getWriter().write("false");
+            }else response.getWriter().write("true");
+        }else response.getWriter().write("true");
+
     }
 }

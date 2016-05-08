@@ -295,7 +295,12 @@ function emplFormValidate() {
                 email: true,
                 remote: {
                     url: "/unicEmplEmail",
-                    type: "post"
+                    type: "post",
+                    data: {
+                        id: function() {
+                            return $( "#id" ).val();
+                        }
+                    }
                 }
             },
             salary: {
