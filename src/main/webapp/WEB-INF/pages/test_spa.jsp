@@ -8,12 +8,15 @@
     <link href="<c:url value="css/metro.css"/>" rel="stylesheet" type="text/css">
     <script src="<c:url value="js/jquery-2.2.3.min.js"/>"></script>
     <script src="<c:url value="js/metro.js"/>"></script>
-    <%--<script src="<c:url value="js/jquery.validate.js"/>"></script>--%>
     <script src="<c:url value="js/jquery.validate.min.js"/>"></script>
 </head>
 <body>
 <div id="test" class="center">
 </div>
 <script src="<c:url value="js/myJs.js"/>"></script>
+<script src="<c:url value="js/serverAjax/departmentServer.js"/>"></script>
+<script src="<c:url value="js/serverAjax/employeeServer.js"/>"></script>
+<script src="<c:url value="js/util/tableDraw.js"/>"></script>
+<script src="<c:url value="js/util/formDraw.js"/>"></script>
 </body>
 </html>
