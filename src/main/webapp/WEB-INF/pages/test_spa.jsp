@@ -18,5 +18,6 @@
 <script src="<c:url value="js/serverAjax/employeeServer.js"/>"></script>
 <script src="<c:url value="js/util/tableDraw.js"/>"></script>
 <script src="<c:url value="js/util/formDraw.js"/>"></script>
+<script src="<c:url value="js/util/buttonHandler.js"/>"></script>
 </body>
 </html>

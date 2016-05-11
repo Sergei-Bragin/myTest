@@ -5,9 +5,10 @@ var FormDraw = function () {
 };
 
 FormDraw.prototype.getFormDep = function (dep) {
-    $('#test').children().detach()
-    var div = $('<div/>').appendTo($('#test'));
-    /!*Form*!/
+    var test = $('#test');
+    test.children().detach()
+    var div = $('<div/>').appendTo(test);
+
     var form = $('<form enctype="multipart/form-data" id="depForm"/>')
         .append($('<label/>').text("Name Department").append($('<br/>')))
         .append($('<input class="input-control text" type="text" id="name" name="name" placeholder="input you name"/>')
@@ -24,8 +25,9 @@ FormDraw.prototype.getFormDep = function (dep) {
 };
 
 FormDraw.prototype.getFormEmp = function (emp) {
-    $('#test').children().detach();
-    var div = $('<div/>').appendTo($('#test'));
+    var test = $('#test');
+    test.children().detach();
+    var div = $('<div/>').appendTo(test);
 
     $('<form id="empForm"/>')
         .append($('<input type="hidden" id="id" name="id"/>').val(emp != null ? emp.id : ""))
